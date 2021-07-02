@@ -1,0 +1,22 @@
+POST {{host}}/api/login
+Content-Type: application/json
+
+{
+  "email"     : "ivans@gmail.com",
+  "password"  : "123456"
+}
+
+> {% client.global.set("auth_token", response.body.data.token); %}
+
+###
+POST {{host}}/api/register
+Content-Type: application/json
+
+{
+  "name"      : "Ivans",
+  "email"     : "ivans@gmail.com",
+  "password"  : "123456",
+  "c_password": "123456"
+}
+
+###
