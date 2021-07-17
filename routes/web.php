@@ -14,5 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('app');
+  return Auth::check() ? view('layouts.dashboard') : view('home.main');
 });
+
+Route::get('login', function () {
+    return view('home.login');
+})->name('login');
+
+Route::get('register', function () {
+    return view('home.register');
+})->name('register');

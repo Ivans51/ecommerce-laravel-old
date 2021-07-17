@@ -4,12 +4,28 @@ module.exports = {
     './resources/**/*.js',
     './resources/**/*.vue',
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "primary": {
+          "light": "#00D4C1",
+          "DEFAULT": "#009688",
+          "dark": "#004037",
+        },
+        "secondary": {
+          "DEFAULT": "#F1F5FC",
+        },
+      },
+      gridTemplateRows: {
+        'home-custom': 'auto 1fr auto',
+      }
+    },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')
+  ],
 }
