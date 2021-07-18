@@ -2,7 +2,7 @@
 
 @section('sidebar')
   <nav class="container mx-auto">
-    <div class="flex justify-between items-center px-4 py-4">
+    <div class="flex justify-between items-center px-4 py-1">
       <ul class="flex space-x-4">
         <x-logo></x-logo>
       </ul>
@@ -14,7 +14,7 @@
           </a>
         </li>
         <li>
-          <a class="hover:text-primary" href="#">
+          <a class="hover:text-primary" href="{{ route('register') }}">
             Register
           </a>
         </li>

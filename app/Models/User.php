@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use YourAppRocks\EloquentUuid\Traits\HasUuid;
 
 class User extends Authenticatable {
-  use HasFactory, Notifiable, HasUuid;
+  use HasApiTokens, HasFactory, Notifiable, HasUuid;
 
   public    $incrementing   = false;
   protected $uuidColumnName = 'id';

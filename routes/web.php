@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +20,20 @@ Route::get('/', function () {
 });
 
 Route::get('login', function () {
-    return view('home.login');
+  return view('home.login');
 })->name('login');
 
 Route::get('register', function () {
-    return view('home.register');
+  return view('home.register');
 })->name('register');
+
+/*
+ * Requests
+ */
+
+Route::post('login', [AuthController::class, 'login'])->name('api-login');
+Route::post('register', [AuthController::class, 'register'])->name('api-register');
+
+Route::middleware('auth:sanctum')->group(function () {
+  Route::resource('products', ProductController::class);
+});

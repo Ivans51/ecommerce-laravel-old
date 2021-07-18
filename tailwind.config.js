@@ -19,6 +19,12 @@ module.exports = {
       },
       gridTemplateRows: {
         'home-custom': 'auto 1fr auto',
+      },
+      fontFamily: {
+        'sans': ['monospace']
+      },
+      fontSize: {
+        'base': '1.1rem',
       }
     },
   },

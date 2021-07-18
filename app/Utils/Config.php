@@ -11,7 +11,8 @@ class Config {
    */
   function getEnv(): array {
     return [
-      'SITE_WEB' => env("RECAPTCHA_SITE_WEB", "somedefaultvalue")
+      'APP_ENV'  => env("APP_ENV"),
+      'SITE_WEB' => env("RECAPTCHA_SITE_WEB")
     ];
   }
 }

@@ -64,7 +64,7 @@ class Handler extends ExceptionHandler {
       return response()->view('404', [], 404);
     }
 
-    if ($e instanceof ValidationException) {
+    if ($e instanceof ValidationException && $request->is('api/*')) {
       return $requestManage->errorValidate($e->status, $e);
     }
 
