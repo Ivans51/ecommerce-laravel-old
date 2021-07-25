@@ -8,6 +8,7 @@
       </ul>
 
       <ul class="flex items-center space-x-4">
+        <x-theme-button></x-theme-button>
         <li>
           <a class="hover:text-primary" href="{{ route('login') }}">
             Login
@@ -25,6 +26,12 @@
 
 @section('content')
   @yield('content-home', 'Hi')
+
+  @error('message')
+  <div class="border px-4 py-2 bg-red-500 text-white mt-2">
+    {{ $errors->first('message') }}
+  </div>
+  @enderror
 @endsection
 
 @section('footer')

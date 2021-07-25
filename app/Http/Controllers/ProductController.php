@@ -7,6 +7,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ProductController extends BaseController {
@@ -18,7 +19,7 @@ class ProductController extends BaseController {
   public function index(): JsonResponse {
     $products = Product::all();
 
-    return $this->sendResponse(ProductResource::collection($products), 'Products retrieved successfully.');
+    return $this->sendResponse(Auth::user(), 'Products retrieved successfully.');
   }
 
   /**
@@ -67,7 +68,7 @@ class ProductController extends BaseController {
     ]);
 
     if ($validator->fails()) {
-      return $this->sendError('Validation Error.', $validator->errors()->all());
+      return $this->sendErrorValidator('Validation Error.', $validator->errors()->all());
     }
 
     $product->name   = $input['name'];

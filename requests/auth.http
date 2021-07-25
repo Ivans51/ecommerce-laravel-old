@@ -2,8 +2,8 @@ POST {{host}}/api/login
 Content-Type: application/json
 
 {
-  "email"     : "ivans@gmail.com",
-  "password"  : "123456"
+  "email"   : "test@gmail.com",
+  "password": "123456"
 }
 
 > {% client.global.set("auth_token", response.body.data.token); %}
@@ -17,6 +17,16 @@ Content-Type: application/json
   "email"     : "ivans@gmail.com",
   "password"  : "123456",
   "c_password": "123456"
+}
+
+###
+POST {{host}}/api/logout
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "token": "18|eKmvHjEQ5DMiyeoMrDgepEa2ful7yqa0MQQdivu5"
 }
 
 ###

@@ -20,6 +20,8 @@ class CreatePersonalAccessTokensTable extends Migration {
       $table->timestamp('last_used_at')->nullable();
       $table->timestamps();
     });
+
+    DB::statement('ALTER TABLE personal_access_tokens MODIFY tokenable_id char(36)');
   }
 
   /**

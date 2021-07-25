@@ -28,12 +28,22 @@ Route::get('register', function () {
 })->name('register');
 
 /*
+ * Resources
+ */
+
+Route::middleware('auth:sanctum')->group(function () {
+  Route::resource('products', ProductController::class);
+
+  Route::get('profile', function () {
+    return view('dashboard.profile');
+  })->name('profile');
+});
+
+Route::get('logout', [AuthController::class, 'logout'])->name('api-logout');
+
+/*
  * Requests
  */
 
 Route::post('login', [AuthController::class, 'login'])->name('api-login');
 Route::post('register', [AuthController::class, 'register'])->name('api-register');
-
-Route::middleware('auth:sanctum')->group(function () {
-  Route::resource('products', ProductController::class);
-});

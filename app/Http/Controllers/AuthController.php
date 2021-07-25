@@ -4,12 +4,40 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Lunaweb\RecaptchaV3\Facades\RecaptchaV3;
+use Auth;
 
 class AuthController extends BaseController {
+
+  /**
+   * Login api
+   *
+   * @param UserRequest $request
+   * @return RedirectResponse
+   */
+  public function login(UserRequest $request): RedirectResponse {
+    try {
+      if (Auth::attempt($request->only(['email', 'password']))) {
+        $isLocal = $this->getConfigEnv()[$this->getConfigApp()->APP_ENV] == $this->getConfigApp()->LOCAL;
+        $score   = $isLocal ? 1 : RecaptchaV3::verify($request->get('g-recaptcha-response'), 'captcha');
+
+        $user = Auth::user();
+        $user->createToken($this->getConfigEnv()[$this->getConfigApp()->TOKEN_APP])->plainTextToken;
+
+        if ($score > 0.7) {
+          return redirect()->route('profile');
+        } else {
+          return $this->exceptionError(null, 'Captcha incorrect');
+        }
+      } else {
+        return $this->exceptionError(null);
+      }
+
+    } catch (\Throwable $ex) {
+      return $this->exceptionError($ex);
+    }
+  }
 
   /**
    * Register api
@@ -19,58 +47,37 @@ class AuthController extends BaseController {
    */
   public function register(UserRequest $request): RedirectResponse {
     try {
-      $user           = new User();
-      $user->name     = $request->input('name');
-      $user->email    = $request->input('email');
-      $user->password = bcrypt($request->input('password'));
-      $user->saveOrFail();
+      $isLocal = $this->getConfigEnv()[$this->getConfigApp()->APP_ENV] == $this->getConfigApp()->LOCAL;
+      $score   = $isLocal ? 1 : RecaptchaV3::verify($request->get('g-recaptcha-response'), 'captcha');
 
-      /*$success['token'] = $user->createToken('09688c51-9635-4dc5-b927-efa09d28a9b7')->plainTextToken;
-      $success['name']  = $user->name;*/
-
-      return back()->with(['success' => 'User register']);
-
+      if ($score > 0.7) {
+        $user           = new User();
+        $user->name     = $request->input('name');
+        $user->email    = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->saveOrFail();
+        return back()->with(['success' => 'User register']);
+      } else {
+        return $this->exceptionError(null, 'Captcha incorrect');
+      }
     } catch (\Throwable $ex) {
-      return $this->exceptionError($ex);
+      return $this->exceptionError($ex, 'Error');
     }
   }
 
   /**
-   * Login api
+   * Logout api
    *
-   * @param Request $request
-   * @return JsonResponse
-   */
-  public function login(Request $request): JsonResponse {
-    if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
-      $user             = Auth::user();
-      $success['token'] = $user->createToken('MyApp')->plainTextToken;
-      $success['name']  = $user->name;
-
-      return $this->sendResponse($success, 'User login successfully.');
-    } else {
-      return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
-    }
-  }
-
-  /**
-   * @param Request $request
+   * @param UserRequest $request
    * @return RedirectResponse
    */
-  public function authenticate(Request $request): RedirectResponse {
-    $credentials = $request->validate([
-      'email'    => ['required', 'email'],
-      'password' => ['required'],
-    ]);
-
-    if (Auth::attempt($credentials)) {
-      $request->session()->regenerate();
-
-      return redirect()->intended('dashboard');
+  public function logout(UserRequest $request): RedirectResponse {
+    try {
+      Auth::user()->tokens()->where('tokenable_id', Auth::user()->id)->delete();
+      Auth::logout();
+      return redirect()->route('login');
+    } catch (\Exception $ex) {
+      return $this->exceptionError($ex);
     }
-
-    return back()->withErrors([
-      'email' => 'The provided credentials do not match our records.',
-    ]);
   }
 }

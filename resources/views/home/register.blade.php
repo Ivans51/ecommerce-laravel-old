@@ -2,13 +2,13 @@
 
 @section('content-home')
   <div class="my-10">
-    <div class="mx-auto w-6/12 border-1 rounded shadow bg-white px-5 py-5">
+    <div class="mx-auto w-6/12 border-1 rounded shadow bg-white px-5 py-5 dark:bg-gray-800">
       <h2 class="mb-10 font-bold text-center text-2xl">Register</h2>
       <form class="relative pb-20" method="post" action="{{ route('api-register') }}">
         @csrf
         <div class="mb-1">
           <label class="text-xl">Name
-            <input type="text" class="form-input px-4 py-3 w-full" name="name">
+            <input type="text" class="form-input px-4 py-3 w-full form-input" name="name">
           </label>
           @if ($errors->has('name'))
             <span class="text-red-700">{{ $errors->first('name') }}</span>
@@ -41,6 +41,12 @@
             <span class="text-red-700">{{ $errors->first('c_password') }}</span>
           @endif
         </div>
+
+        @if ($errors->has('g-recaptcha-response'))
+          <span class="text-red-700 dark:text-red-500">{{ $errors->first('g-recaptcha-response') }}</span>
+        @endif
+        {!! RecaptchaV3::initJs() !!}
+        {!! RecaptchaV3::field('captcha') !!}
 
         <button
           class="py-1 px-2 rounded bg-primary text-white text-xl absolute bottom-0 right-0 transition hover:bg-primary-light">
