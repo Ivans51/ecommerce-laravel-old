@@ -42,6 +42,8 @@
           @endif
         </div>
 
+        <input type="hidden" name="role" value="{{\App\Utils\Constants::CUSTOMER}}">
+
         @if ($errors->has('g-recaptcha-response'))
           <span class="text-red-700 dark:text-red-500">{{ $errors->first('g-recaptcha-response') }}</span>
         @endif
@@ -59,12 +61,6 @@
             <a class="font-bold underline" href="{{route('login')}}">Go to Login</a>
           </div>
         @endif
-
-        @error('message')
-        <div class="border px-4 py-2 bg-red-500 text-white mt-2">
-          {{ $errors->first('message') }}
-        </div>
-        @enderror
       </form>
     </div>
   </div>

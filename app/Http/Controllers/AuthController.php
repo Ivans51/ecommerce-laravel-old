@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Utils\Constants;
+use Auth;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Lunaweb\RecaptchaV3\Facades\RecaptchaV3;
-use Auth;
+use Throwable;
 
 class AuthController extends BaseController {
 
@@ -19,23 +22,23 @@ class AuthController extends BaseController {
   public function login(UserRequest $request): RedirectResponse {
     try {
       if (Auth::attempt($request->only(['email', 'password']))) {
-        $isLocal = $this->getConfigEnv()[$this->getConfigApp()->APP_ENV] == $this->getConfigApp()->LOCAL;
+        $isLocal = appEnv() == Constants::LOCAL;
         $score   = $isLocal ? 1 : RecaptchaV3::verify($request->get('g-recaptcha-response'), 'captcha');
 
         $user = Auth::user();
-        $user->createToken($this->getConfigEnv()[$this->getConfigApp()->TOKEN_APP])->plainTextToken;
+        $user->createToken(tokenAppEnv())->plainTextToken;
 
         if ($score > 0.7) {
           return redirect()->route('profile');
         } else {
-          return $this->exceptionError(null, 'Captcha incorrect');
+          return $this->launchError('Captcha incorrect');
         }
       } else {
-        return $this->exceptionError(null);
+        return $this->launchError('Data incorrect');
       }
 
-    } catch (\Throwable $ex) {
-      return $this->exceptionError($ex);
+    } catch (Throwable $ex) {
+      return $this->launchThrowable($ex);
     }
   }
 
@@ -47,7 +50,7 @@ class AuthController extends BaseController {
    */
   public function register(UserRequest $request): RedirectResponse {
     try {
-      $isLocal = $this->getConfigEnv()[$this->getConfigApp()->APP_ENV] == $this->getConfigApp()->LOCAL;
+      $isLocal = appEnv() == Constants::LOCAL;
       $score   = $isLocal ? 1 : RecaptchaV3::verify($request->get('g-recaptcha-response'), 'captcha');
 
       if ($score > 0.7) {
@@ -55,29 +58,29 @@ class AuthController extends BaseController {
         $user->name     = $request->input('name');
         $user->email    = $request->input('email');
         $user->password = bcrypt($request->input('password'));
+        $user->role     = $request->input('role');
         $user->saveOrFail();
         return back()->with(['success' => 'User register']);
       } else {
-        return $this->exceptionError(null, 'Captcha incorrect');
+        return $this->launchError('Captcha incorrect');
       }
-    } catch (\Throwable $ex) {
-      return $this->exceptionError($ex, 'Error');
+    } catch (Throwable $ex) {
+      return $this->launchThrowable($ex, 'Error');
     }
   }
 
   /**
    * Logout api
    *
-   * @param UserRequest $request
    * @return RedirectResponse
    */
-  public function logout(UserRequest $request): RedirectResponse {
+  public function logout(): RedirectResponse {
     try {
       Auth::user()->tokens()->where('tokenable_id', Auth::user()->id)->delete();
       Auth::logout();
       return redirect()->route('login');
-    } catch (\Exception $ex) {
-      return $this->exceptionError($ex);
+    } catch (Exception $ex) {
+      return $this->launchThrowable($ex);
     }
   }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Utils\Constants;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Lunaweb\RecaptchaV3\Facades\RecaptchaV3;
@@ -40,12 +41,12 @@ class AuthApiController extends BaseController {
   public function login(UserRequest $request): JsonResponse {
     try {
       if (Auth::attempt($request->only(['email', 'password']))) {
-        $isLocal = $this->getConfigEnv()[$this->getConfigApp()->APP_ENV] == $this->getConfigApp()->LOCAL;
+        $isLocal = appEnv() == Constants::LOCAL;
 
         $user  = Auth::user();
-        $token = $user->createToken($this->getConfigEnv()[$this->getConfigApp()->TOKEN_APP])->plainTextToken;
+        $token = $user->createToken(tokenAppEnv())->plainTextToken;
 
-        $score   = $isLocal ? 1 : RecaptchaV3::verify($request->get('g-recaptcha-response'), 'captcha');
+        $score = $isLocal ? 1 : RecaptchaV3::verify($request->get('g-recaptcha-response'), 'captcha');
 
         if ($score > 0.7) {
           return $this->sendResponse([

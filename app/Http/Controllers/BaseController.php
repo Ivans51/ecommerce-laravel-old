@@ -2,38 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Utils\ConfigApp;
+use App\Utils\Constants;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use stdClass;
 
 class BaseController extends Controller {
-
-  /**
-   * @var array
-   */
-  private $configApp;
-
-  public function __construct() {
-    $this->configApp = (new ConfigApp());
-  }
-
-  /**
-   * @return array
-   */
-  public function getConfigEnv(): array {
-    return $this->configApp->getEnv();
-  }
-
-  /**
-   * @return array
-   */
-  public function getConfigApp() {
-    return $this->configApp;
-  }
-
 
   /**
    * success response method.
@@ -93,8 +68,8 @@ class BaseController extends Controller {
    * @param string $message
    * @return RedirectResponse
    */
-  public function exceptionError(\Throwable $error, string $message = 'something is wrong'): RedirectResponse {
-    $isLocal = $this->configApp->getEnv()[$this->configApp->APP_ENV] == $this->configApp->LOCAL;
+  public function launchThrowable(\Throwable $error, string $message = 'something is wrong'): RedirectResponse {
+    $isLocal = appEnv() == Constants::LOCAL;
 
     if ($error instanceof QueryException) {
       return back()->withErrors([
@@ -102,8 +77,20 @@ class BaseController extends Controller {
       ]);
     } else {
       return back()->withErrors([
-        'message' => $isLocal && $message ? $error->getMessage() : $message,
+        'message' => $isLocal ? $error->getMessage() : $message,
       ]);
     }
+  }
+
+  /**
+   * @param string $message
+   * @return RedirectResponse
+   */
+  public function launchError(string $message = 'something is wrong'): RedirectResponse {
+    $isLocal = appEnv() == Constants::LOCAL;
+
+    return back()->withErrors([
+      'message' => $isLocal ? $message : 'something is wrong',
+    ]);
   }
 }

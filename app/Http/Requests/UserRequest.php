@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Utils\ConfigApp;
+use App\Utils\Constants;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest {
@@ -13,13 +13,12 @@ class UserRequest extends FormRequest {
    * @return array
    */
   public function rules(): array {
-    $config = (new ConfigApp());
     $arr    = explode('@', $this->route()->getActionName());
     $method = $arr[1];
 
     switch ($method) {
       case 'register':
-        return $config->getEnv()[$config->APP_ENV] == $config->LOCAL ? [
+        return appEnv() == Constants::LOCAL ? [
           'name'       => 'required|string',
           'email'      => 'required|email',
           'password'   => 'required',
@@ -32,7 +31,7 @@ class UserRequest extends FormRequest {
           'g-recaptcha-response' => 'required|recaptchav3:captcha,0.5'
         ];
       case 'login':
-        return $config->getEnv()[$config->APP_ENV] == $config->LOCAL ? [
+        return appEnv() == Constants::LOCAL ? [
           'email'    => 'required|email',
           'password' => 'required',
         ] : [

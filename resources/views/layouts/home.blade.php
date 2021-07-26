@@ -28,7 +28,7 @@
   @yield('content-home', 'Hi')
 
   @error('message')
-  <div class="border px-4 py-2 bg-red-500 text-white mt-2">
+  <div class="border px-4 py-2 bg-red-500 text-white mt-2 w-6/12 mx-auto">
     {{ $errors->first('message') }}
   </div>
   @enderror
