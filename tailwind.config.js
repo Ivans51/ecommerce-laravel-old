@@ -21,7 +21,7 @@ module.exports = {
         'home-custom': 'auto 1fr auto',
       },
       fontFamily: {
-        'sans': ['monospace']
+        'sans': ['system-ui']
       },
       fontSize: {
         'base': '1.1rem',

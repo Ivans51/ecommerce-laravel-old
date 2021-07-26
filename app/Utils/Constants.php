@@ -10,5 +10,6 @@ class Constants {
   const PROD = 'prod';
   const ADMIN = 'admin';
   const CUSTOMER = 'customer';
+  const UNAUTHENTICATED = 'unauthenticated';
 
 }
