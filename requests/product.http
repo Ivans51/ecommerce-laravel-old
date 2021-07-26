@@ -1,0 +1,24 @@
+GET {{host}}/api/products
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+###
+POST {{host}}/api/products
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "detail"     : "few"
+}
+
+###
+PUT {{host}}/api/products
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name"      : "delicate",
+  "detail"     : "grace"
+}
+
+###
