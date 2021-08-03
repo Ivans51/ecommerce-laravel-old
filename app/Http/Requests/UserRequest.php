@@ -18,7 +18,7 @@ class UserRequest extends FormRequest {
 
     switch ($method) {
       case 'register':
-        return appEnv() == Constants::LOCAL ? [
+        return config('app.env') == Constants::LOCAL ? [
           'name'       => 'required|string',
           'email'      => 'required|email',
           'password'   => 'required',
@@ -31,7 +31,7 @@ class UserRequest extends FormRequest {
           'g-recaptcha-response' => 'required|recaptchav3:captcha,0.5'
         ];
       case 'login':
-        return appEnv() == Constants::LOCAL ? [
+        return config('app.env') == Constants::LOCAL ? [
           'email'    => 'required|email',
           'password' => 'required',
         ] : [

@@ -8,12 +8,11 @@
   <title>Ecommerce</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   @stack('styles')
   <script src="{{asset('js/utils.js')}}"></script>
 </head>
-<body class="bg-secondary font-sans dark:bg-gray-800">
+<body class="bg-secondary font-poppins dark:bg-gray-800">
 
 <div class="grid grid-rows-3 h-screen grid-rows-home-custom">
 

@@ -41,10 +41,10 @@ class AuthApiController extends BaseController {
   public function login(UserRequest $request): JsonResponse {
     try {
       if (Auth::attempt($request->only(['email', 'password']))) {
-        $isLocal = appEnv() == Constants::LOCAL;
+        $isLocal = config('app.env') == Constants::LOCAL;
 
         $user  = Auth::user();
-        $token = $user->createToken(tokenAppEnv())->plainTextToken;
+        $token = $user->createToken(config('app.token_app'))->plainTextToken;
 
         $score = $isLocal ? 1 : RecaptchaV3::verify($request->get('g-recaptcha-response'), 'captcha');
 

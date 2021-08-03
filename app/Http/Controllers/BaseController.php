@@ -69,7 +69,7 @@ class BaseController extends Controller {
    * @return RedirectResponse
    */
   public function launchThrowable(\Throwable $error, string $message = 'something is wrong'): RedirectResponse {
-    $isLocal = appEnv() == Constants::LOCAL;
+    $isLocal = config('app.env') == Constants::LOCAL;
 
     if ($error instanceof QueryException) {
       return back()->withErrors([
@@ -87,7 +87,7 @@ class BaseController extends Controller {
    * @return RedirectResponse
    */
   public function launchError(string $message = 'something is wrong'): RedirectResponse {
-    $isLocal = appEnv() == Constants::LOCAL;
+    $isLocal = config('app.env') == Constants::LOCAL;
 
     return back()->withErrors([
       'message' => $isLocal ? $message : 'something is wrong',

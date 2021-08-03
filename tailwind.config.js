@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   purge: [
     './resources/**/*.blade.php',
@@ -21,11 +23,9 @@ module.exports = {
         'home-custom': 'auto 1fr auto',
       },
       fontFamily: {
-        'sans': ['Roboto']
+        poppins: ['Poppins'],
+        roboto: ['Roboto']
       },
-      /*fontSize: {
-        'base': '1.1rem',
-      }*/
     },
   },
   variants: {

@@ -22,11 +22,11 @@ class AuthController extends BaseController {
   public function login(UserRequest $request): RedirectResponse {
     try {
       if (Auth::attempt($request->only(['email', 'password']))) {
-        $isLocal = appEnv() == Constants::LOCAL;
+        $isLocal = config('app.env') == Constants::LOCAL;
         $score   = $isLocal ? 1 : RecaptchaV3::verify($request->get('g-recaptcha-response'), 'captcha');
 
         $user = Auth::user();
-        $user->createToken(tokenAppEnv())->plainTextToken;
+        $user->createToken(config('app.token_app'))->plainTextToken;
 
         if ($score > 0.7) {
           return redirect()->route('profile');
@@ -50,7 +50,7 @@ class AuthController extends BaseController {
    */
   public function register(UserRequest $request): RedirectResponse {
     try {
-      $isLocal = appEnv() == Constants::LOCAL;
+      $isLocal = config('app.env') == Constants::LOCAL;
       $score   = $isLocal ? 1 : RecaptchaV3::verify($request->get('g-recaptcha-response'), 'captcha');
 
       if ($score > 0.7) {
