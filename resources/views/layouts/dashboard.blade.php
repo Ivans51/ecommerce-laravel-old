@@ -1,33 +1,47 @@
 @extends('layouts.app')
 
 @section('sidebar')
-  <nav class="container mx-auto">
-    <div class="flex justify-between items-center px-4 py-4">
-      <ul class="flex space-x-4">
+  <div class="rounded-lg shadow bg-base-200 drawer h-52">
+    <input id="my-drawer-3" type="checkbox" class="drawer-toggle">
+    <div class="flex flex-col drawer-content">
+      <div class="w-full navbar bg-base-300">
+        <div class="flex-none lg:hidden">
+          <label for="my-drawer-3" class="btn btn-square btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </label>
+        </div>
+        <div class="flex-1 px-2 mx-2">
+        <span>
+          Change screen size to show/hide menu
+        </span>
+        </div>
+        <div class="flex-none hidden lg:block">
+          <ul class="menu horizontal">
+            <li>
+              <a class="rounded-btn">Item 1</a>
+            </li>
+            <li>
+              <a class="rounded-btn">Item 2</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <span>Hi</span>
+    </div>
+    <div class="drawer-side">
+      <label for="my-drawer-3" class="drawer-overlay"></label>
+      <ul class="p-4 overflow-y-auto menu w-80 bg-base-100">
         <li>
-          <a class="hover:text-blue-800" href="#">Products</a>
-        </li>
-      </ul>
-
-      <ul class="flex items-center space-x-4">
-        <x-theme-button></x-theme-button>
-        <li class="border rounded bg-white p-1 dark:bg-gray-900 dark:border-transparent">
-          <a class="flex items-center space-x-2 hover:text-blue-800" href="#">
-            <img class="object-fill h-6" src="{{asset('img/buying.png')}}" alt="shop icon">
-            <span>0</span>
-          </a>
+          <a>Item 1</a>
         </li>
         <li>
-          <a class="hover:text-blue-800" href="#">
-            <img class="object-fill h-8" src="{{asset('img/game_controller.png')}}" alt="profile icon">
-          </a>
-        </li>
-        <li>
-          <a href="{{route('api-logout')}}">Logout</a>
+          <a>Item 2</a>
         </li>
       </ul>
     </div>
-  </nav>
+  </div>
 @endsection
 
 @section('content')

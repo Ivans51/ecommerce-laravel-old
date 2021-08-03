@@ -9,29 +9,32 @@ module.exports = {
     extend: {
       colors: {
         "primary": {
-          "light": "#00D4C1",
-          "DEFAULT": "#009688",
-          "dark": "#004037",
+          "light": "#63d093ff",
+          "DEFAULT": "#56B280",
+          "dark": "#41825cff",
         },
         "secondary": {
-          "DEFAULT": "#F1F5FC",
+          "DEFAULT": "#272727",
         },
       },
       gridTemplateRows: {
         'home-custom': 'auto 1fr auto',
       },
       fontFamily: {
-        'sans': ['system-ui']
+        'sans': ['Roboto']
       },
-      fontSize: {
+      /*fontSize: {
         'base': '1.1rem',
-      }
+      }*/
     },
   },
   variants: {
     extend: {},
   },
+  daisyui: {
+    themes: false,
+  },
   plugins: [
-    require('@tailwindcss/forms')
+    require('daisyui'),
   ],
 }

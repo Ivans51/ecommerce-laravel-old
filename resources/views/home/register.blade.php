@@ -6,36 +6,36 @@
       <h2 class="mb-10 font-bold text-center text-2xl">Register</h2>
       <form class="relative pb-20" method="post" action="{{ route('api-register') }}">
         @csrf
-        <div class="mb-1">
-          <label class="text-xl">Name
-            <input type="text" class="form-input px-4 py-3 w-full form-input" name="name">
+        <div class="mb-1 form-control">
+          <label>Name
+            <input type="text" class="input input-bordered input-sm px-4 py-3 w-full form-input" name="name">
           </label>
           @if ($errors->has('name'))
             <span class="text-red-700">{{ $errors->first('name') }}</span>
           @endif
         </div>
 
-        <div class="mb-1">
-          <label class="text-xl">Email
-            <input type="email" class="form-input px-4 py-3 w-full" name="email">
+        <div class="mb-1 form-control">
+          <label>Email
+            <input type="email" class="input input-bordered input-sm px-4 py-3 w-full" name="email">
           </label>
           @if ($errors->has('email'))
             <span class="text-red-700">{{ $errors->first('email') }}</span>
           @endif
         </div>
 
-        <div class="mb-1">
-          <label class="text-xl">Password
-            <input type="password" class="form-input px-4 py-3 w-full" name="password">
+        <div class="mb-1 form-control">
+          <label>Password
+            <input type="password" class="input input-bordered input-sm px-4 py-3 w-full" name="password">
           </label>
           @if ($errors->has('password'))
             <span class="text-red-700">{{ $errors->first('password') }}</span>
           @endif
         </div>
 
-        <div class="mb-1">
-          <label class="text-xl">Repeat Password
-            <input type="password" class="form-input px-4 py-3 w-full" name="c_password">
+        <div class="mb-1 form-control">
+          <label>Repeat Password
+            <input type="password" class="input input-bordered input-sm px-4 py-3 w-full" name="c_password">
           </label>
           @if ($errors->has('c_password'))
             <span class="text-red-700">{{ $errors->first('c_password') }}</span>

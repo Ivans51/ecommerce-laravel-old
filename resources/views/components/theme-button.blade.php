@@ -1,18 +1,16 @@
-<li>
-  <div class="pretty p-switch p-fill" onclick="onChangeTheme()">
-    <input type="checkbox" />
-    <div class="state">
-      <label>Dark theme</label>
-    </div>
-  </div>
+<li class="flex items-center space-x-2">
+  <label for="dark-theme">Dark theme</label>
+  <input id="dark-theme"
+         type="checkbox"
+         checked="checked"
+         class="toggle toggle-sm bg-gray-400 dark:bg-gray-900"
+         onclick="onChangeTheme()">
 </li>
-
-@push('styles')
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
-@endpush
 
 @push('scripts')
   <script>
+    isDarkTheme()
+
     function onChangeTheme() {
       changeTheme()
     }

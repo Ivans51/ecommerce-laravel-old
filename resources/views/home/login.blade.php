@@ -6,18 +6,18 @@
       <h2 class="mb-10 font-bold text-center text-2xl">Login</h2>
       <form class="relative pb-20" method="post" action="{{ route('api-login') }}">
         @csrf
-        <div class="mb-1">
-          <label class="text-xl">Email
-            <input type="email" class="form-input px-4 py-3 w-full" name="email">
+        <div class="mb-1 form-control">
+          <label>Email
+            <input type="email" class="input input-bordered input-sm px-4 py-3 w-full" name="email">
           </label>
           @if ($errors->has('email'))
             <span class="text-red-700">{{ $errors->first('email') }}</span>
           @endif
         </div>
 
-        <div class="mb-1">
-          <label class="text-xl">Password
-            <input type="password" class="form-input px-4 py-3 w-full" name="password">
+        <div class="mb-1 form-control">
+          <label>Password
+            <input type="password" class="input input-bordered input-sm px-4 py-3 w-full" name="password">
           </label>
           @if ($errors->has('password'))
             <span class="text-red-700">{{ $errors->first('password') }}</span>

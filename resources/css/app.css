@@ -5,3 +5,7 @@
 .dark .form-input {
   color: black;
 }
+
+.input {
+  @apply dark:text-black
+}
