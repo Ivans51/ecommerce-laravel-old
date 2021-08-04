@@ -30,10 +30,10 @@
 @endsection
 
 @section('footer')
-  <footer class="container mx-auto flex justify-between px-4 py-4 text-sm">
+  <div class="container mx-auto flex justify-between px-4 py-4 text-sm">
     <p>©2021 IvansDev</p>
     <p><a class="hover:text-primary" href="#">Terms</a></p>
-  </footer>
+  </div>
 @endsection
 
 @push('scripts')

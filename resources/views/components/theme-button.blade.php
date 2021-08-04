@@ -1,5 +1,4 @@
-<div
-  class="cursor-pointer items-center flex space-x-2 px-2 py-1
+<div class="cursor-pointer items-center flex space-x-2 px-2 py-1
           dark:hover:bg-gray-800 hover:bg-gray-100 lg:hover:bg-transparent lg:dark:hover:bg-transparent
           lg:dark:hover:text-primary lg:hover:text-primary">
   <label for="dark-theme" class="cursor-pointer">Dark theme</label>

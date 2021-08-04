@@ -12,24 +12,21 @@
   @stack('styles')
   <script src="{{asset('js/utils.js')}}"></script>
 </head>
-<body class="bg-secondary font-poppins dark:bg-gray-800">
+<body class="font-poppins dark:bg-gray-800">
 
-<div class="grid grid-rows-3 grid-rows-home-custom">
+<header class="bg-white dark:bg-black dark:text-white shadow fixed w-full z-10">
+  @yield('sidebar')
+</header>
 
-  <div class="bg-white dark:bg-black dark:text-white shadow">
-    @yield('sidebar')
-  </div>
+<main class="dark:text-white">
+  @yield('content')
+</main>
 
-  <main class="container mx-auto bg-gray-50 dark:bg-gray-900 dark:text-white">
-    @yield('content')
-  </main>
+<footer class="bg-quartary text-white">
+  @yield('footer')
+</footer>
 
-  <div class="bg-white dark:bg-black dark:text-white shadow">
-    @yield('footer')
-  </div>
-
-  @stack('scripts')
-</div>
+@stack('scripts')
 
 </body>
 </html>

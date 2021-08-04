@@ -22,7 +22,7 @@
     </div>
 
     <div class="hidden lg:flex space-x-2">
-      <img src="{{asset('img/images/Cart.png')}}" alt="ico cart">
+      <img src="{{asset('img/images/cart.png')}}" alt="ico cart">
       <img src="{{asset('img/images/profile.png')}}" alt="ico profile">
     </div>
 
@@ -48,8 +48,8 @@
 @endsection
 
 @section('footer')
-  <footer class="container mx-auto flex justify-between px-4 py-4 text-sm">
+  <div class="container mx-auto flex justify-between px-4 py-4 text-sm">
     <p>©2021 IvansDev</p>
     <p><a class="hover:text-primary" href="#">Terms</a></p>
-  </footer>
+  </div>
 @endsection
