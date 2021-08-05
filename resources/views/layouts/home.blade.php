@@ -6,28 +6,32 @@
       <x-logo></x-logo>
     </div>
 
-    <div class="space-x-2 hidden lg:flex items-center">
+    <div class="space-x-4 hidden lg:flex items-center">
       <x-theme-button></x-theme-button>
-      <a class="cursor-pointer hover:text-primary px-2 py-1">
+      <a class="cursor-pointer hover:text-primary">
         Products
       </a>
 
-      <a class="cursor-pointer hover:text-primary px-2 py-1">
+      <a class="cursor-pointer hover:text-primary">
         About
       </a>
 
-      <a class="cursor-pointer hover:text-primary px-2 py-1">
+      <a class="cursor-pointer hover:text-primary">
         Testimonials
       </a>
     </div>
 
     @if(Auth::check())
-      <div class="hidden lg:flex space-x-2">
-        <img src="{{asset('img/images/cart.png')}}" alt="ico cart">
-        <img src="{{asset('img/images/profile.png')}}" alt="ico profile">
+      <div class="hidden lg:flex space-x-4">
+        <a href="/#">
+          <img src="{{asset('img/images/cart.png')}}" alt="ico cart">
+        </a>
+        <a href="/#">
+          <img src="{{asset('img/images/profile.png')}}" alt="ico profile">
+        </a>
       </div>
     @else
-      <div class="hidden lg:flex space-x-2">
+      <div class="hidden lg:flex space-x-4">
         <a class="hover:text-primary" href="{{ route('login') }}">
           Login
         </a>
@@ -47,7 +51,7 @@
     </div>
   </nav>
 
-  <div id="menu-collapse" class="hidden flex-col w-full p-4 absolute dark:bg-gray-900 bg-white z-10 border-t">
+  <div id="menu-collapse" class="hidden flex-col w-full p-4 absolute dark:bg-gray-900 bg-white z-10 border-t border-b">
     <x-theme-button></x-theme-button>
     <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
       Products
@@ -60,6 +64,22 @@
     <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
       Testimonials
     </a>
+
+    @if(Auth::check())
+      <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1" href="/#">
+        <img src="{{asset('img/images/cart.png')}}" alt="ico cart">
+      </a>
+      <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1" href="/#">
+        <img src="{{asset('img/images/profile.png')}}" alt="ico profile">
+      </a>
+    @else
+      <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1" href="{{ route('login') }}">
+        Login
+      </a>
+      <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1" href="{{ route('register') }}">
+        Register
+      </a>
+    @endif
   </div>
 @endsection
 

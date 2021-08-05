@@ -1,10 +1,15 @@
 @extends('layouts.home')
 
 @section('content-home')
-  <div class="my-10">
+  <div class="h-16"></div>
+
+  <div class="py-20">
     <div class="mx-auto w-6/12 border-1 rounded shadow bg-white px-5 py-5 dark:bg-gray-800">
-      <h2 class="mb-10 font-bold text-center text-2xl">Register</h2>
-      <form class="relative pb-20" method="post" action="{{ route('api-register') }}">
+      <div class="text-center mb-8">
+        <h2 class="font-bold text-2xl">Register</h2>
+        <p class="mt-2 text-sm">Please complete data to do the register.</p>
+      </div>
+      <form class="relative" method="post" action="{{ route('api-register') }}">
         @csrf
         <div class="mb-1 form-control">
           <label>Name
@@ -50,10 +55,13 @@
         {!! RecaptchaV3::initJs() !!}
         {!! RecaptchaV3::field('captcha') !!}
 
-        <button
-          class="py-1 px-2 rounded bg-primary text-white text-xl absolute bottom-0 right-0 transition hover:bg-primary-light">
-          Save
+        <button class="btn-custom w-full mt-6 mb-8">
+          Sign Up
         </button>
+
+        <a class="text-center block text-sm hover:text-primary" href="{{route('login')}}">
+          Don have an Account? Login
+        </a>
 
         @if (Session::exists('success'))
           <div class="border px-4 py-2 bg-primary text-white mt-2">

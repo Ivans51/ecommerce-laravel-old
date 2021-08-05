@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 /* Views */
 Route::get('/', function () {
   return Auth::check() ? view('layouts.dashboard') : view('home.main');
-});
+})->name('home');
 
 Route::middleware('validate:' . Constants::UNAUTHENTICATED)->group(function () {
   Route::get('login', function () {
