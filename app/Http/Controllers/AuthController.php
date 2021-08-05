@@ -79,7 +79,7 @@ class AuthController extends BaseController {
       Auth::user()->tokens()->where('tokenable_id', Auth::user()->id)->delete();
       Auth::logout();
       return redirect()->route('login');
-    } catch (Exception $ex) {
+    } catch (Throwable | Exception $ex) {
       return $this->launchThrowable($ex);
     }
   }

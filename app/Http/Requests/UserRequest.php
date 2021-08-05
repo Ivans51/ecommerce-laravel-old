@@ -23,11 +23,13 @@ class UserRequest extends FormRequest {
           'email'      => 'required|email',
           'password'   => 'required',
           'c_password' => 'required|same:password',
+          'role'       => 'required|string',
         ] : [
           'name'                 => 'required|string',
           'email'                => 'required|email',
           'password'             => 'required',
           'c_password'           => 'required|same:password',
+          'role'                 => 'required|string',
           'g-recaptcha-response' => 'required|recaptchav3:captcha,0.5'
         ];
       case 'login':
@@ -50,11 +52,13 @@ class UserRequest extends FormRequest {
       "email.required"                => __('validation.required', ['attribute' => 'email']),
       "password.required"             => __('validation.required', ['attribute' => 'password']),
       "c_password.required"           => __('validation.required', ['attribute' => 'c_password']),
+      "role.required"                 => __('validation.required', ['attribute' => 'role']),
       "g-recaptcha-response.required" => __('validation.required', ['attribute' => 'g-recaptcha-response']),
 
+      "name.string"                      => __('validation.string', ['attribute' => 'name']),
       "email.email"                      => __('validation.email', ['attribute' => 'email']),
       "c_password.same"                  => __('validation.same', ['attribute' => 'password', 'other' => 'c_password']),
-      "name.string"                      => __('validation.string', ['attribute' => 'name']),
+      "role.string"                      => __('validation.string', ['attribute' => 'role']),
       "g-recaptcha-response.recaptchav3" => __('validation.recaptchav3', ['attribute' => 'g-recaptcha-response']),
     ];
   }

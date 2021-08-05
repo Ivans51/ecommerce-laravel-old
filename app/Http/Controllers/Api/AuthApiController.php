@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Utils\Constants;
@@ -80,3 +81,4 @@ class AuthApiController extends BaseController {
     }
   }
 }
+
