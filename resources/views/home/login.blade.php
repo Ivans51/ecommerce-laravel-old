@@ -34,34 +34,6 @@
           Forgot your password?
         </label>
 
-        <input type="checkbox" id="my-modal-2" class="modal-toggle">
-        <div class="modal">
-          <div class="modal-box">
-            <div class="relative text-center mb-8">
-              <h2 class="font-bold text-2xl">Forgot password</h2>
-              <label class="absolute right-0 top-1 cursor-pointer" for="my-modal-2">
-                <img src="{{asset('img/images/close.png')}}" alt="close ico">
-              </label>
-            </div>
-
-            <form method="post" action="{{ route('api-login') }}">
-              @csrf
-              <div class="mb-1 form-control">
-                <label>Email
-                  <input type="email" class="input input-bordered input-sm px-4 py-3 w-full" name="email">
-                </label>
-                @if ($errors->has('email'))
-                  <span class="text-red-700">{{ $errors->first('email') }}</span>
-                @endif
-              </div>
-            </form>
-
-            <label for="my-modal-2" class="btn-custom w-full block text-center mt-8 mb-2">
-              Send
-            </label>
-          </div>
-        </div>
-
         <button class="btn-custom w-full mt-4 mb-8">
           Sign in
         </button>
@@ -73,6 +45,34 @@
         {!! RecaptchaV3::initJs() !!}
         {!! RecaptchaV3::field('captcha') !!}
       </form>
+
+      <input type="checkbox" id="my-modal-2" class="modal-toggle">
+      <div class="modal">
+        <div class="modal-box">
+          <div class="relative text-center mb-8">
+            <h2 class="font-bold text-2xl">Forgot password</h2>
+            <label class="absolute right-0 top-1 cursor-pointer" for="my-modal-2">
+              <img src="{{asset('img/images/close.png')}}" alt="close ico">
+            </label>
+          </div>
+
+          <form method="post" action="{{ route('api-login') }}">
+            @csrf
+            <div class="mb-1 form-control">
+              <label>Email
+                <input type="email" class="input input-bordered input-sm px-4 py-3 w-full" name="email">
+              </label>
+              @if ($errors->has('email'))
+                <span class="text-red-700">{{ $errors->first('email') }}</span>
+              @endif
+            </div>
+          </form>
+
+          <label for="my-modal-2" class="btn-custom w-full block text-center mt-8 mb-2">
+            Send
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 @endsection

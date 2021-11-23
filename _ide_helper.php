@@ -15612,6 +15612,60 @@
      
 }
 
+    namespace Lunaweb\RecaptchaV3\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class RecaptchaV3 {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function verify($token, $action = null)
+        {
+                        /** @var \Lunaweb\RecaptchaV3\RecaptchaV3 $instance */
+                        return $instance->verify($token, $action);
+        }
+                    /**
+         * 
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function sitekey()
+        {
+                        /** @var \Lunaweb\RecaptchaV3\RecaptchaV3 $instance */
+                        return $instance->sitekey();
+        }
+                    /**
+         * 
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function initJs()
+        {
+                        /** @var \Lunaweb\RecaptchaV3\RecaptchaV3 $instance */
+                        return $instance->initJs();
+        }
+                    /**
+         * 
+         *
+         * @param $action
+         * @static 
+         */ 
+        public static function field($action, $name = 'g-recaptcha-response')
+        {
+                        /** @var \Lunaweb\RecaptchaV3\RecaptchaV3 $instance */
+                        return $instance->field($action, $name);
+        }
+         
+    }
+     
+}
+
     namespace Illuminate\Http { 
             /**
      * 
@@ -15679,7 +15733,7 @@ namespace  {
             class Broadcast extends \Illuminate\Support\Facades\Broadcast {}
             class Bus extends \Illuminate\Support\Facades\Bus {}
             class Cache extends \Illuminate\Support\Facades\Cache {}
-            class Config extends \Illuminate\Support\Facades\Config {}
+            class ConfigApp extends \Illuminate\Support\Facades\Config {}
             class Cookie extends \Illuminate\Support\Facades\Cookie {}
             class Crypt extends \Illuminate\Support\Facades\Crypt {}
             class Date extends \Illuminate\Support\Facades\Date {}
@@ -18925,6 +18979,7 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
+            class RecaptchaV3 extends \Lunaweb\RecaptchaV3\Facades\RecaptchaV3 {}
      
 }
 
