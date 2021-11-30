@@ -7,10 +7,9 @@
 
   <title>Ecommerce</title>
 
-  <!-- Fonts -->
+  <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   @stack('styles')
-  <script src="{{asset('js/utils.js')}}"></script>
 </head>
 <body class="font-poppins dark:bg-gray-800">
 
@@ -18,13 +17,44 @@
   @yield('sidebar')
 </header>
 
-<main class="dark:text-white">
+<main class="dark:text-white" style="padding-top: 64px">
   @yield('content')
 </main>
 
 <footer class="bg-quartary text-white">
   @yield('footer')
 </footer>
+
+<script src="{{ asset('js/app.js') }}"></script>
+
+<script>
+  startTheme(true)
+
+  isDarkTheme()
+
+  function onChangeTheme() {
+    changeTheme()
+  }
+
+  window.addEventListener('resize', function (event) {
+    if (event.currentTarget.innerWidth > 1024) {
+      if (document.getElementById('menu-collapse').classList.contains('flex')) {
+        document.getElementById('menu-collapse').classList.add('hidden')
+        document.getElementById('menu-collapse').classList.remove('flex')
+      }
+    }
+  })
+
+  function openMenu() {
+    if (document.getElementById('menu-collapse').classList.contains('flex')) {
+      document.getElementById('menu-collapse').classList.add('hidden')
+      document.getElementById('menu-collapse').classList.remove('flex')
+    } else {
+      document.getElementById('menu-collapse').classList.add('flex')
+      document.getElementById('menu-collapse').classList.remove('hidden')
+    }
+  }
+</script>
 
 @stack('scripts')
 

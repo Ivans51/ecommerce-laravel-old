@@ -8,13 +8,3 @@
          class="toggle toggle-sm bg-gray-400 dark:bg-gray-900"
          onclick="onChangeTheme()">
 </div>
-
-@push('scripts')
-  <script>
-    isDarkTheme()
-
-    function onChangeTheme() {
-      changeTheme()
-    }
-  </script>
-@endpush

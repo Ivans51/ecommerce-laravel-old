@@ -48,7 +48,7 @@
 
       <input type="checkbox" id="my-modal-2" class="modal-toggle">
       <div class="modal">
-        <div class="modal-box">
+        <div class="modal-box dark:bg-gray-600">
           <div class="relative text-center mb-8">
             <h2 class="font-bold text-2xl">Forgot password</h2>
             <label class="absolute right-0 top-1 cursor-pointer" for="my-modal-2">

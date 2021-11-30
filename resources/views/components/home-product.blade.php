@@ -4,6 +4,6 @@
   </div>
   <div class="px-5 py-2">
     <p>Spiced Mint</p>
-    <p class="text-primary flex justify-end">9.99$</p>
+    <p class="text-primary flex justify-end text-lg">9.99$</p>
   </div>
 </div>

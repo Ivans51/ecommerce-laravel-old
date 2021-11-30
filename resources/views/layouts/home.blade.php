@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('sidebar')
-  <nav class="container mx-auto navbar flex justify-between lg:justify-around">
-    <div class="px-2 mx-2">
+  <nav class="container mx-auto navbar flex justify-between lg:grid lg:grid-cols-3">
+    <div>
       <x-logo></x-logo>
     </div>
 
-    <div class="space-x-4 hidden lg:flex items-center">
+    <div class="space-x-4 hidden lg:flex items-center justify-self-center">
       <x-theme-button></x-theme-button>
       <a class="cursor-pointer hover:text-primary">
         Products
@@ -21,17 +21,8 @@
       </a>
     </div>
 
-    @if(Auth::check())
-      <div class="hidden lg:flex space-x-4">
-        <a href="/#">
-          <img src="{{asset('img/images/cart.png')}}" alt="ico cart">
-        </a>
-        <a href="/#">
-          <img src="{{asset('img/images/profile.png')}}" alt="ico profile">
-        </a>
-      </div>
-    @else
-      <div class="hidden lg:flex space-x-4">
+    @if(!Auth::check())
+      <div class="hidden lg:flex space-x-4 justify-self-end">
         <a class="hover:text-primary" href="{{ route('login') }}">
           Login
         </a>
@@ -65,14 +56,7 @@
       Testimonials
     </a>
 
-    @if(Auth::check())
-      <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1" href="/#">
-        <img src="{{asset('img/images/cart.png')}}" alt="ico cart">
-      </a>
-      <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1" href="/#">
-        <img src="{{asset('img/images/profile.png')}}" alt="ico profile">
-      </a>
-    @else
+    @if(!Auth::check())
       <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1" href="{{ route('login') }}">
         Login
       </a>
@@ -84,7 +68,7 @@
 @endsection
 
 @section('content')
-  @yield('content-home', 'Hi')
+  @yield('content-home')
 
   @error('message')
   <div class="border px-4 py-2 bg-red-500 text-white mt-2 w-6/12 mx-auto">
@@ -97,7 +81,7 @@
   <div class="container mx-auto pb-4 pt-14">
     <div class="bg-white" style="height: 1px"></div>
 
-    <div class="flex justify-between flex-col md:flex-row py-4 text-xs">
+    <div class="flex justify-between flex-col md:flex-row py-4">
       <div class="w-2/5">
         <img src="{{asset('img/images/logo-footer.png')}}" alt="logo footer">
         <p>Your natural candle made for your home and for your wellness.</p>
@@ -116,26 +100,3 @@
     </div>
   </div>
 @endsection
-
-@push('scripts')
-  <script>
-    window.addEventListener('resize', function (event) {
-      if (event.currentTarget.innerWidth > 1024) {
-        if (document.getElementById('menu-collapse').classList.contains('flex')) {
-          document.getElementById('menu-collapse').classList.add('hidden')
-          document.getElementById('menu-collapse').classList.remove('flex')
-        }
-      }
-    })
-
-    function openMenu() {
-      if (document.getElementById('menu-collapse').classList.contains('flex')) {
-        document.getElementById('menu-collapse').classList.add('hidden')
-        document.getElementById('menu-collapse').classList.remove('flex')
-      } else {
-        document.getElementById('menu-collapse').classList.add('flex')
-        document.getElementById('menu-collapse').classList.remove('hidden')
-      }
-    }
-  </script>
-@endpush

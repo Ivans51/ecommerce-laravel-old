@@ -1,26 +1,46 @@
 @extends('layouts.app')
 
 @section('sidebar')
-  <nav class="container mx-auto">
-    <div class="flex justify-between items-center px-4 py-4">
-      <ul class="flex space-x-4">
-        <li>
-          <a class="hover:text-blue-800" href="#">Products</a>
-        </li>
-      </ul>
+  <nav class="container mx-auto navbar flex justify-between lg:grid lg:grid-cols-3">
+    <div class="px-2 mx-2">
+      <x-logo></x-logo>
+    </div>
 
-      <ul class="flex items-center space-x-4">
-        <x-theme-button></x-theme-button>
-        <li>
-          <a href="{{route('api-logout')}}">Logout</a>
-        </li>
-      </ul>
+    <div class="space-x-4 hidden lg:flex justify-self-center">
+      <x-theme-button></x-theme-button>
+      <a class="cursor-pointer hover:text-primary rounded-btn px-2 py-1">
+        Products
+      </a>
+    </div>
+
+    <div class="hidden lg:flex space-x-4 justify-self-end">
+      <a class="ico-menu ico-profile" href="{{route('api-logout')}}"></a>
+    </div>
+
+    <div class="flex-none lg:hidden" onclick="openMenu()">
+      <button class="btn btn-square btn-ghost">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             class="inline-block w-6 h-6 stroke-current">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
     </div>
   </nav>
+
+  <div id="menu-collapse" class="hidden flex-col w-full p-4 absolute dark:bg-gray-900 bg-white z-10 border-t border-b">
+    <x-theme-button></x-theme-button>
+    <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
+      Products
+    </a>
+
+    <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1" href="{{route('api-logout')}}">
+      Logout
+    </a>
+  </div>
 @endsection
 
 @section('content')
-  @yield('content-admin', 'Hi')
+  @yield('content-admin')
 
   @error('message')
   <div class="border px-4 py-2 bg-red-500 text-white mt-2 w-6/12 mx-auto">
@@ -35,11 +55,3 @@
     <p><a class="hover:text-primary" href="#">Terms</a></p>
   </div>
 @endsection
-
-@push('scripts')
-  <script>
-    function onChangeTheme() {
-      changeTheme()
-    }
-  </script>
-@endpush

@@ -16,3 +16,28 @@
 .btn-custom {
   @apply py-1 px-2 rounded text-white transition bg-primary hover:bg-primary-light cursor-pointer
 }
+
+a.ico-menu {
+  height: 24px;
+  width: 24px;
+}
+
+a.ico-cart {
+  background: url("/img/images/cart.svg") no-repeat;
+  background-size: contain;
+}
+
+a.ico-profile {
+  background: url("/img/images/profile.svg") no-repeat;
+  background-size: contain;
+}
+
+.dark a.ico-cart {
+  background: url("/img/images/cart-white.svg") no-repeat;
+  background-size: contain;
+}
+
+.dark a.ico-profile {
+  background: url("/img/images/profile-white.svg") no-repeat;
+  background-size: contain;
+}
