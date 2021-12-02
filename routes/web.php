@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Utils\Constants;
+use App\Utils\Menu;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,16 +19,24 @@ use Illuminate\Support\Facades\Route;
 
 /* Views */
 Route::get('/', function () {
-  return Auth::check() ? view('layouts.dashboard') : view('home.main');
+  if (!Auth::check()) {
+    return view('home.main')->with(['menu' => Menu::getHome()]);
+  } elseif (Auth::user()->role == Constants::CUSTOMER) {
+    return view('dashboard.main')->with(['menu' => Menu::getHome()]);
+  } else if (Auth::user()->role == Constants::ADMIN) {
+    return view('admin.main')->with(['menu' => Menu::getHome()]);
+  } else {
+    return view('home.main')->with(['menu' => Menu::getHome()]);
+  }
 })->name('home');
 
 Route::middleware('validate:' . Constants::UNAUTHENTICATED)->group(function () {
   Route::get('login', function () {
-    return view('home.login');
+    return view('home.login')->with(['menu' => Menu::getHome()]);
   })->name('login');
 
   Route::get('register', function () {
-    return view('home.register');
+    return view('home.register')->with(['menu' => Menu::getHome()]);
   })->name('register');
 });
 
@@ -39,17 +48,17 @@ Route::middleware('auth:sanctum')->group(function () {
 
   Route::middleware('validate:' . Constants::CUSTOMER)->group(function () {
     Route::get('profile', function () {
-      return view('dashboard.profile');
+      return view('dashboard.profile')->with(['menu' => Menu::getHome()]);
     })->name('profile');
 
     Route::get('main', function () {
-      return view('dashboard.main');
+      return view('dashboard.main')->with(['menu' => Menu::getHome()]);
     })->name('main-customer');
   });
 
   Route::middleware('validate:' . Constants::ADMIN)->group(function () {
     Route::get('main-admin', function () {
-      return view('admin.main');
+      return view('admin.main')->with(['menu' => Menu::getAdmin()]);
     })->name('main-admin');
   });
 });

@@ -8,17 +8,11 @@
 
     <div class="space-x-4 hidden lg:flex items-center justify-self-center">
       <x-theme-button></x-theme-button>
-      <a class="cursor-pointer hover:text-primary">
-        Products
-      </a>
-
-      <a class="cursor-pointer hover:text-primary">
-        About
-      </a>
-
-      <a class="cursor-pointer hover:text-primary">
-        Testimonials
-      </a>
+      @foreach($menu as $item)
+        <a href="{{ $item['link'] }}" class="cursor-pointer hover:text-primary">
+          {{ $item['label'] }}
+        </a>
+      @endforeach
     </div>
 
     @if(!Auth::check())
@@ -44,17 +38,11 @@
 
   <div id="menu-collapse" class="hidden flex-col w-full p-4 absolute dark:bg-gray-900 bg-white z-10 border-t border-b">
     <x-theme-button></x-theme-button>
-    <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
-      Products
-    </a>
-
-    <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
-      About
-    </a>
-
-    <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
-      Testimonials
-    </a>
+    @foreach($menu as $item)
+      <a href="{{ $item['link'] }}" class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
+        {{ $item['label'] }}
+      </a>
+    @endforeach
 
     @if(!Auth::check())
       <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1" href="{{ route('login') }}">

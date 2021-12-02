@@ -1,10 +1,8 @@
 @extends('layouts.home')
 
 @section('content-home')
-  <div class="h-16"></div>
-
   <div class="py-20">
-    <div class="mx-auto w-6/12 border-1 rounded shadow bg-white px-5 py-5 dark:bg-gray-800">
+    <div class="mx-auto w-6/12 border-1 rounded shadow bg-white px-5 py-5 dark:bg-gray-900">
       <div class="text-center mb-8">
         <h2 class="font-bold text-2xl">Register</h2>
         <p class="mt-2 text-sm">Please complete data to do the register.</p>

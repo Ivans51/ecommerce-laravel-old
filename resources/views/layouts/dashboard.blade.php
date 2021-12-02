@@ -8,17 +8,11 @@
 
     <div class="space-x-4 hidden lg:flex items-center justify-self-center">
       <x-theme-button></x-theme-button>
-      <a class="cursor-pointer hover:text-primary rounded-btn px-2 py-1">
-        Products
-      </a>
-
-      <a class="cursor-pointer hover:text-primary rounded-btn px-2 py-1">
-        About
-      </a>
-
-      <a class="cursor-pointer hover:text-primary rounded-btn px-2 py-1">
-        Testimonials
-      </a>
+      @foreach($menu as $item)
+        <a href="{{ $item['link'] }}" class="cursor-pointer hover:text-primary">
+          {{ $item['label'] }}
+        </a>
+      @endforeach
     </div>
 
     <div class="hidden lg:flex space-x-4 justify-self-end">
@@ -38,23 +32,17 @@
 
   <div id="menu-collapse" class="hidden flex-col w-full p-4 absolute dark:bg-gray-900 bg-white z-10 border-t border-b">
     <x-theme-button></x-theme-button>
-    <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
-      Products
-    </a>
-
-    <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
-      About
-    </a>
-
-    <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
-      Testimonials
-    </a>
+    @foreach($menu as $item)
+      <a href="{{ $item['link'] }}" class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
+        {{ $item['label'] }}
+      </a>
+    @endforeach
 
     <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
       Shop cart
     </a>
 
-    <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1" href="{{route('api-logout')}}">
+    <a href="{{route('api-logout')}}" class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
       Profile
     </a>
   </div>

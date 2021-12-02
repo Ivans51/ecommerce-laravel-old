@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
 
 @section('content-dashboard')
-  Contents custom
+  Contents customer
 @endsection
