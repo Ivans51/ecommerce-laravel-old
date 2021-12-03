@@ -7,7 +7,6 @@
     </div>
 
     <div class="space-x-4 hidden lg:flex items-center justify-self-center">
-      <x-theme-button></x-theme-button>
       @foreach($menu as $item)
         <a href="{{ $item['link'] }}" class="cursor-pointer hover:text-primary">
           {{ $item['label'] }}
@@ -16,8 +15,9 @@
     </div>
 
     <div class="hidden lg:flex space-x-4 justify-self-end">
-      <a href="/#" class="ico-menu ico-cart"></a>
-      <a class="ico-menu ico-profile" href="{{route('api-logout')}}"></a>
+      <x-theme-button></x-theme-button>
+      <a href="{{ route('shop-cart-customer') }}" class="ico-menu ico-cart"></a>
+      <a class="ico-menu ico-profile" href="{{route('profile-customer')}}"></a>
     </div>
 
     <div class="flex-none lg:hidden" onclick="openMenu()">
@@ -38,24 +38,28 @@
       </a>
     @endforeach
 
-    <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
+    <a href="{{route('shop-cart-customer')}}"
+       class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
       Shop cart
     </a>
 
-    <a href="{{route('api-logout')}}" class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
+    <a href="{{route('profile-customer')}}"
+       class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
       Profile
     </a>
   </div>
 @endsection
 
 @section('content')
-  @yield('content-dashboard')
+  <div class="xl:container mx-auto">
+    @yield('content-customer')
 
-  @error('message')
-  <div class="border px-4 py-2 bg-red-500 text-white mt-2 w-6/12 mx-auto">
-    {{ $errors->first('message') }}
+    @error('message')
+    <div class="border px-4 py-2 bg-red-500 text-white mt-2 w-6/12 mx-auto">
+      {{ $errors->first('message') }}
+    </div>
+    @enderror
   </div>
-  @enderror
 @endsection
 
 @section('footer')

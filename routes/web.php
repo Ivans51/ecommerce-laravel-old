@@ -19,16 +19,22 @@ use Illuminate\Support\Facades\Route;
 
 /* Views */
 Route::get('/', function () {
-  if (!Auth::check()) {
-    return view('home.main')->with(['menu' => Menu::getHome()]);
-  } elseif (Auth::user()->role == Constants::CUSTOMER) {
-    return view('dashboard.main')->with(['menu' => Menu::getHome()]);
-  } else if (Auth::user()->role == Constants::ADMIN) {
-    return view('admin.main')->with(['menu' => Menu::getHome()]);
+  if (Auth::check()) {
+    if (Auth::user()->role == Constants::ADMIN) {
+      return view('admin.main')->with(['menu' => Menu::getAdmin()]);
+    } else if (Auth::user()->role == Constants::CUSTOMER) {
+      return view('customer.home')->with(['menu' => Menu::getCustomer()]);
+    } else {
+      return view('main.home')->with(['menu' => Menu::getHome()]);
+    }
   } else {
-    return view('home.main')->with(['menu' => Menu::getHome()]);
+    return view('main.home')->with(['menu' => Menu::getHome()]);
   }
 })->name('home');
+
+Route::get('/products', function () {
+  return view('home.products')->with(['menu' => Menu::getHome()]);
+})->name('products');
 
 Route::middleware('validate:' . Constants::UNAUTHENTICATED)->group(function () {
   Route::get('login', function () {
@@ -44,22 +50,31 @@ Route::middleware('validate:' . Constants::UNAUTHENTICATED)->group(function () {
  * Auth Views
  */
 Route::middleware('auth:sanctum')->group(function () {
-  Route::resource('products', ProductController::class);
 
-  Route::middleware('validate:' . Constants::CUSTOMER)->group(function () {
+  Route::prefix('customer')->middleware('validate:' . Constants::CUSTOMER)->group(function () {
     Route::get('profile', function () {
-      return view('dashboard.profile')->with(['menu' => Menu::getHome()]);
-    })->name('profile');
+      return view('customer.profile')->with(['menu' => Menu::getCustomer()]);
+    })->name('profile-customer');
 
-    Route::get('main', function () {
-      return view('dashboard.main')->with(['menu' => Menu::getHome()]);
-    })->name('main-customer');
+    Route::get('products', function () {
+      return view('customer.products')->with(['menu' => Menu::getCustomer()]);
+    })->name('products-customer');
+
+    Route::get('shop-cart', function () {
+      return view('customer.shop-cart')->with(['menu' => Menu::getCustomer()]);
+    })->name('shop-cart-customer');
+
+    Route::get('product', function () {
+      return view('customer.product')->with(['menu' => Menu::getCustomer()]);
+    })->name('product-customer');
   });
 
-  Route::middleware('validate:' . Constants::ADMIN)->group(function () {
-    Route::get('main-admin', function () {
-      return view('admin.main')->with(['menu' => Menu::getAdmin()]);
-    })->name('main-admin');
+  Route::prefix('admin')->middleware('validate:' . Constants::ADMIN)->group(function () {
+    Route::resource('products', ProductController::class);
+
+    Route::get('home', function () {
+      return view('admin.home')->with(['menu' => Menu::getAdmin()]);
+    })->name('home-admin');
   });
 });
 
