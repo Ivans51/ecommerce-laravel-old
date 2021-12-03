@@ -38,11 +38,11 @@ Route::get('/products', function () {
 
 Route::middleware('validate:' . Constants::UNAUTHENTICATED)->group(function () {
   Route::get('login', function () {
-    return view('home.login')->with(['menu' => Menu::getHome()]);
+    return view('main.login')->with(['menu' => Menu::getHome()]);
   })->name('login');
 
   Route::get('register', function () {
-    return view('home.register')->with(['menu' => Menu::getHome()]);
+    return view('main.register')->with(['menu' => Menu::getHome()]);
   })->name('register');
 });
 
@@ -55,6 +55,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('profile', function () {
       return view('customer.profile')->with(['menu' => Menu::getCustomer()]);
     })->name('profile-customer');
+
+    Route::get('profile-password', function () {
+      return view('customer.profile-password')->with(['menu' => Menu::getCustomer()]);
+    })->name('profile-password-customer');
 
     Route::get('products', function () {
       return view('customer.products')->with(['menu' => Menu::getCustomer()]);

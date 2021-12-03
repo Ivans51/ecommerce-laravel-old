@@ -29,7 +29,7 @@ class AuthController extends BaseController {
         $user->createToken(config('app.token_app'))->plainTextToken;
 
         if ($score > 0.7) {
-          return redirect()->route('profile');
+          return redirect()->route('profile-customer');
         } else {
           return $this->launchError('Captcha incorrect');
         }
