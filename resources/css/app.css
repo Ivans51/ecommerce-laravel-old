@@ -5,18 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.dark .form-input {
-  color: black;
-}
-
-.input {
-  @apply dark:text-black
-}
-
-.btn-custom {
-  @apply py-1 px-2 rounded text-white transition bg-primary hover:bg-primary-light cursor-pointer
-}
-
 a.ico-menu {
   height: 24px;
   width: 24px;
@@ -40,4 +28,46 @@ a.ico-profile {
 .dark a.ico-profile {
   background: url("/img/images/profile-white.svg") no-repeat;
   background-size: contain;
+}
+
+/* Custom */
+.divider-ecommerce {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .divider-ecommerce {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .form-input {
+  color: black;
+}
+
+.dark input {
+  @apply bg-gray-800;
+  color: white !important;
+}
+
+.input {
+  @apply dark:text-black
+}
+
+.h-screen-ecommerce {
+  height: calc(100vh - 116px);
+}
+
+.btn-custom {
+  @apply py-1 px-2 rounded text-white transition bg-primary hover:bg-primary-light cursor-pointer;
+}
+
+#navigation {
+  @apply mt-8 px-4 py-4 flex items-center justify-between border-t border-gray-200 sm:px-6;
+}
+
+#navigation .navigation-item {
+  @apply relative inline-flex items-center px-4 py-2 border text-sm font-medium;
+}
+
+#navigation .navigation-arrow {
+  @apply relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50;
 }

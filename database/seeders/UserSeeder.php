@@ -18,6 +18,7 @@ class UserSeeder extends Seeder {
         'id'                => '2be13f4d-b9b5-45e5-9b15-9a296f85a9c1',
         'name'              => 'customer',
         'email'             => 'customer@gmail.com',
+        'address'           => 'street',
         'email_verified_at' => now(),
         'password'          => Hash::make('123456'),
         'role'              => 'customer',

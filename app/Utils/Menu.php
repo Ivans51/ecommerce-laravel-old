@@ -12,6 +12,12 @@ class Menu {
     ];
   }
 
+  static function getCustomer(): array {
+    return [
+      ['label' => 'Products', 'link' => '/customer/products'],
+    ];
+  }
+
   static function getAdmin(): array {
     return [
       ['label' => 'Products', 'link' => 'products'],

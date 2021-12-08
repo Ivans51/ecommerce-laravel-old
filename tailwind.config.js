@@ -24,7 +24,7 @@ module.exports = {
           "dark": "#2a2929",
         },
         "quartary":  {
-          "DEFAULT": "#272727",
+          "DEFAULT": "#9E9E9E",
         },
       },
       gridTemplateRows: {
