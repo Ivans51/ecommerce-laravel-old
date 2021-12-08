@@ -32,7 +32,7 @@ a.ico-profile {
 
 /* Custom */
 .divider-ecommerce {
-  border-bottom: 1px solid rgba(255, 255, 255, 1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .dark .divider-ecommerce {
@@ -41,6 +41,11 @@ a.ico-profile {
 
 .dark .form-input {
   color: black;
+}
+
+.dark input {
+  @apply bg-gray-800;
+  color: white !important;
 }
 
 .input {
@@ -56,7 +61,7 @@ a.ico-profile {
 }
 
 #navigation {
-  @apply mt-8 bg-white dark:bg-gray-900 px-4 py-4 flex items-center justify-between border-t border-gray-200 sm:px-6;
+  @apply mt-8 px-4 py-4 flex items-center justify-between border-t border-gray-200 sm:px-6;
 }
 
 #navigation .navigation-item {

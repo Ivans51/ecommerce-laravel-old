@@ -16,6 +16,9 @@
         <li class="px-10 py-5 divider-ecommerce cursor-pointer hover:bg-gray-900">
           <a href="{{route('profile-password-customer')}}">Change password</a>
         </li>
+        <li class="px-10 py-5 divider-ecommerce cursor-pointer hover:bg-gray-900">
+          <a href="{{route('api-logout')}}">Logout</a>
+        </li>
       </ul>
     </div>
 

@@ -21,7 +21,7 @@
   @yield('content')
 </main>
 
-<footer class="bg-quartary text-white">
+<footer class="bg-black text-white">
   @yield('footer')
 </footer>
 

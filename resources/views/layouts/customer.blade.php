@@ -66,7 +66,7 @@
   <div class="container mx-auto pb-4 pt-14">
     <div class="bg-white" style="height: 1px"></div>
 
-    <div class="flex justify-between flex-col md:flex-row py-4">
+    <div class="flex justify-between flex-col md:flex-row py-4 px-4">
       <div class="w-2/5">
         <img src="{{asset('img/images/logo-footer.png')}}" alt="logo footer">
         <p>Your natural candle made for your home and for your wellness.</p>
