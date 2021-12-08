@@ -68,13 +68,13 @@ Route::middleware('auth:sanctum')->group(function () {
       return view('customer.products')->with(['menu' => Menu::getCustomer()]);
     })->name('products-customer');
 
-    Route::get('shop-cart', function () {
-      return view('customer.shop-cart')->with(['menu' => Menu::getCustomer()]);
-    })->name('shop-cart-customer');
-
     Route::get('product', function () {
       return view('customer.product')->with(['menu' => Menu::getCustomer()]);
     })->name('product-customer');
+
+    Route::get('shop-cart', function () {
+      return view('customer.shop-cart')->with(['menu' => Menu::getCustomer()]);
+    })->name('shop-cart-customer');
   });
 
   Route::prefix('admin')->middleware('validate:' . Constants::ADMIN)->group(function () {
