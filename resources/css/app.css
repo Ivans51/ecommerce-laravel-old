@@ -32,6 +32,10 @@ a.ico-profile {
 
 /* Custom */
 .divider-ecommerce {
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
+}
+
+.dark .divider-ecommerce {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -48,5 +52,17 @@ a.ico-profile {
 }
 
 .btn-custom {
-  @apply py-1 px-2 rounded text-white transition bg-primary hover:bg-primary-light cursor-pointer
+  @apply py-1 px-2 rounded text-white transition bg-primary hover:bg-primary-light cursor-pointer;
+}
+
+#navigation {
+  @apply mt-8 bg-white dark:bg-gray-900 px-4 py-4 flex items-center justify-between border-t border-gray-200 sm:px-6;
+}
+
+#navigation .navigation-item {
+  @apply relative inline-flex items-center px-4 py-2 border text-sm font-medium;
+}
+
+#navigation .navigation-arrow {
+  @apply relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50;
 }

@@ -63,8 +63,25 @@
 @endsection
 
 @section('footer')
-  <div class="container mx-auto flex justify-between px-4 py-4 text-sm">
-    <p>©2021 IvansDev</p>
-    <p><a class="hover:text-primary" href="#">Terms</a></p>
+  <div class="container mx-auto pb-4 pt-14">
+    <div class="bg-white" style="height: 1px"></div>
+
+    <div class="flex justify-between flex-col md:flex-row py-4">
+      <div class="w-2/5">
+        <img src="{{asset('img/images/logo-footer.png')}}" alt="logo footer">
+        <p>Your natural candle made for your home and for your wellness.</p>
+        <p>©2021 IvansDev</p>
+      </div>
+
+      <div class="flex space-x-6 mt-4 leading-8">
+        <div>
+          <p><a class="hover:text-primary" href="{{route('products-customer')}}">Products</a></p>
+          <p><a class="hover:text-primary" href="{{route('login')}}">Login</a></p>
+          <p><a class="hover:text-primary" href="{{route('register')}}">Register</a></p>
+        </div>
+        <p><a class="hover:text-primary" href="#">About</a></p>
+        <p><a class="hover:text-primary" href="{{route('terms')}}">Terms</a></p>
+      </div>
+    </div>
   </div>
 @endsection

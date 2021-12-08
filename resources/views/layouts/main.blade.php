@@ -78,12 +78,12 @@
 
       <div class="flex space-x-6 mt-4 leading-8">
         <div>
-          <p><a class="hover:text-primary" href="#">Products</a></p>
+          <p><a class="hover:text-primary" href="{{route('products')}}">Products</a></p>
           <p><a class="hover:text-primary" href="{{route('login')}}">Login</a></p>
           <p><a class="hover:text-primary" href="{{route('register')}}">Register</a></p>
         </div>
         <p><a class="hover:text-primary" href="#">About</a></p>
-        <p><a class="hover:text-primary" href="#">Terms</a></p>
+        <p><a class="hover:text-primary" href="{{route('terms')}}">Terms</a></p>
       </div>
     </div>
   </div>

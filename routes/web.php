@@ -33,8 +33,12 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/products', function () {
-  return view('home.products')->with(['menu' => Menu::getHome()]);
+  return view('main.products')->with(['menu' => Menu::getHome()]);
 })->name('products');
+
+Route::get('/terms', function () {
+  return view('main.terms')->with(['menu' => Menu::getHome()]);
+})->name('terms');
 
 Route::middleware('validate:' . Constants::UNAUTHENTICATED)->group(function () {
   Route::get('login', function () {

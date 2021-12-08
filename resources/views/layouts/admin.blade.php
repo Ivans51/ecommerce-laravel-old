@@ -56,6 +56,6 @@
 @section('footer')
   <div class="container mx-auto flex justify-between px-4 py-4 text-sm">
     <p>©2021 IvansDev</p>
-    <p><a class="hover:text-primary" href="#">Terms</a></p>
+    <p><a class="hover:text-primary" href="{{route('terms')}}">Terms</a></p>
   </div>
 @endsection
