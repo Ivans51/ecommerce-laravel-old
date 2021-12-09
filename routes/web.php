@@ -75,6 +75,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('shop-cart', function () {
       return view('customer.shop-cart')->with(['menu' => Menu::getCustomer()]);
     })->name('shop-cart-customer');
+
+    Route::get('shop-cart-address', function () {
+      return view('customer.shop-cart-address')->with(['menu' => Menu::getCustomer()]);
+    })->name('shop-cart-customer-address');
   });
 
   Route::prefix('admin')->middleware('validate:' . Constants::ADMIN)->group(function () {
