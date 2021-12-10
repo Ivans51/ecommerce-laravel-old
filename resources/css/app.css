@@ -43,7 +43,7 @@ a.ico-profile {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-input, select, textarea {
+.input, input, select, textarea {
   @apply outline-none dark:text-black border border-opacity-50 border-secondary-light;
 }
 

@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
   if (Auth::check()) {
     if (Auth::user()->role == Constants::ADMIN) {
-      return view('admin.main')->with(['menu' => Menu::getAdmin()]);
+      return view('admin.home')->with(['menu' => Menu::getAdmin()]);
     } else if (Auth::user()->role == Constants::CUSTOMER) {
       return view('customer.home')->with(['menu' => Menu::getCustomer()]);
     } else {

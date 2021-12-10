@@ -13,17 +13,7 @@
 </head>
 <body class="font-poppins dark:bg-gray-800">
 
-<header class="bg-white dark:bg-black dark:text-white shadow fixed w-full z-10">
-  @yield('sidebar')
-</header>
-
-<main class="dark:text-white" style="padding-top: 64px">
-  @yield('content')
-</main>
-
-<footer class="bg-black text-white">
-  @yield('footer')
-</footer>
+@yield('main-app')
 
 <script src="{{ asset('js/app.js') }}"></script>
 
