@@ -87,9 +87,9 @@
         </div>
         <p class="text-quartary my-2">Tax and shipping cost will be calculated later</p>
       </div>
-      <button class="btn-custom" style="padding: 5px 40px !important;">
+      <a href="{{route('shop-cart-customer-address')}}" class="btn-custom" style="padding: 5px 40px !important;">
         Check-out
-      </button>
+      </a>
     </div>
   </section>
 @endsection

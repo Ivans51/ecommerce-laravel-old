@@ -4,13 +4,13 @@
   <section class="block lg:flex">
     <div class="w-full lg:w-3/6 px-4 sm:px-10 md:px-16 lg:px-32 pt-4 md:pt-10 pb-20">
       <div class="block sm:flex space-x-0 sm:space-x-2">
-        <a href="#" class="text-primary">Cart</a>
+        <a href="{{route('shop-cart-customer')}}" class="text-primary">Cart</a>
         <img src="{{asset('img/images/arrow-right.svg')}}" alt="arrow icon">
-        <a href="#" class="font-bold">Details</a>
+        <a class="font-bold">Details</a>
         <img src="{{asset('img/images/arrow-right.svg')}}" alt="arrow icon">
-        <a href="#">Shipping</a>
+        <a href="{{route('shop-cart-customer-payment')}}">Shipping</a>
         <img src="{{asset('img/images/arrow-right.svg')}}" alt="arrow icon">
-        <a href="#">Payment</a>
+        <a href="{{route('shop-cart-customer-success')}}">Payment</a>
       </div>
 
       <form action="">
