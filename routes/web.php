@@ -75,6 +75,18 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('shop-cart', function () {
       return view('customer.shop-cart')->with(['menu' => Menu::getCustomer()]);
     })->name('shop-cart-customer');
+
+    Route::get('shop-cart-address', function () {
+      return view('customer.shop-cart-address')->with(['menu' => Menu::getCustomer()]);
+    })->name('shop-cart-customer-address');
+
+    Route::get('shop-cart-payment', function () {
+      return view('customer.shop-cart-payment')->with(['menu' => Menu::getCustomer()]);
+    })->name('shop-cart-customer-payment');
+
+    Route::get('shop-cart-success', function () {
+      return view('customer.shop-cart-success')->with(['menu' => Menu::getCustomer()]);
+    })->name('shop-cart-customer-success');
   });
 
   Route::prefix('admin')->middleware('validate:' . Constants::ADMIN)->group(function () {

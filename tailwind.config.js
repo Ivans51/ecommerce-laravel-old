@@ -17,14 +17,18 @@ module.exports = {
           "100": 'rgba(86,178,128, 0.1)'
         },
         "secondary": {
+          "light": "#898989",
           "DEFAULT": "#272727",
         },
         "tertiary":  {
+          "light": "#A8A8A8",
           "DEFAULT": "#F7F8FA",
           "dark": "#2a2929",
         },
         "quartary":  {
+          "light": "#F2F2F2",
           "DEFAULT": "#9E9E9E",
+          "dark": "#616161",
         },
       },
       gridTemplateRows: {
