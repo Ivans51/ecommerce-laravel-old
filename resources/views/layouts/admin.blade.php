@@ -1,70 +1,139 @@
 @extends('layouts.app')
 
 @section('main-app')
-  <header class="bg-white dark:bg-black dark:text-white shadow fixed w-full z-10">
-    <nav class="container mx-auto navbar flex justify-between lg:grid lg:grid-cols-3">
-      <div class="px-2 mx-2">
-        <x-logo></x-logo>
-      </div>
-
-      <div class="space-x-4 hidden lg:flex justify-self-center">
-        <x-theme-button></x-theme-button>
-        @foreach($menu as $item)
-          <a href="{{ $item['link'] }}" class="cursor-pointer hover:text-primary">
-            {{ $item['label'] }}
+  <div>
+    <header id="mySidenav" class="bg-gray-900 sidenav text-white">
+      <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
+      <ul class="flex flex-col">
+        <li>
+          <x-logo></x-logo>
+        </li>
+        <li class="hover:bg-gray-800"><a href="/#">Profile</a></li>
+        <li class="hover:bg-gray-800"><a href="/#">Admins</a></li>
+        <li class="hover:bg-gray-800"><a href="/#">Products</a></li>
+        <li class="hover:bg-gray-800"><a href="/#">Categories</a></li>
+        <li class="hover:bg-gray-800"><a href="/#">Config</a></li>
+        <li class="hover:bg-gray-800">
+          <a>
+            <div class="cursor-pointer items-center flex space-x-2">
+              <label for="dark-theme" class="cursor-pointer">Dark theme</label>
+              <input id="dark-theme"
+                     type="checkbox"
+                     checked="checked"
+                     class="toggle toggle-sm bg-gray-400 dark:bg-gray-900"
+                     onclick="onChangeTheme()">
+            </div>
           </a>
-        @endforeach
-      </div>
+        </li>
+        <li class="hover:bg-gray-800"><a href="/#">Logout</a></li>
+      </ul>
+    </header>
 
-      <div class="hidden lg:flex space-x-4 justify-self-end">
-        <a class="ico-menu ico-profile" href="{{route('api-logout')}}"></a>
-      </div>
-
-      <div class="flex-none lg:hidden" onclick="openMenu()">
-        <button class="btn btn-square btn-ghost">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-               class="inline-block w-6 h-6 stroke-current">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-    </nav>
-
-    <div id="menu-collapse"
-         class="hidden flex-col w-full p-4 absolute dark:bg-gray-900 bg-white z-10 border-t border-b">
-      <x-theme-button></x-theme-button>
-      @foreach($menu as $item)
-        <a href="{{ $item['link'] }}" class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1">
-          {{ $item['label'] }}
-        </a>
-      @endforeach
-
-      <a class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 block px-2 py-1" href="{{route('api-logout')}}">
-        Logout
-      </a>
-    </div>
-  </header>
-
-  <main class="dark:text-white">
-    <div class="h-screen">
-      <nav>
-
+    <div id="main">
+      <nav class="w-full bg-gray-900 text-white navbar space-x-4" style="min-height: 55px !important;">
+        <div class="container mx-auto flex justify-end">
+          Page Dashboard
+          <button class="btn btn-square btn-ghost inline-block md:hidden" onclick="openNav()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                 class="inline-block w-6 h-6 stroke-current">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
       </nav>
 
-      @yield('content-admin')
-    </div>
+      <main style="height: 200px">
+        @yield('content-admin')
 
-    @error('message')
-    <div class="border px-4 py-2 bg-red-500 text-white mt-2 w-6/12 mx-auto">
-      {{ $errors->first('message') }}
-    </div>
-    @enderror
-  </main>
+        @error('message')
+        <div class="border px-4 py-2 bg-red-500 text-white mt-2 w-6/12 mx-auto">
+          {{ $errors->first('message') }}
+        </div>
+        @enderror
+      </main>
 
-  <footer class="bg-black text-white">
-    <div class="container mx-auto flex justify-between px-4 py-4 text-sm">
-      <p>©2021 IvansDev</p>
-      <p><a class="hover:text-primary" href="{{route('terms')}}">Terms</a></p>
+      <footer class="bg-gray-900 text-white">
+        <div class="container mx-auto flex justify-between px-4 py-4 text-sm">
+          <p>©2021 IvansDev</p>
+          <p><a class="hover:text-primary" href="{{route('terms')}}">Terms</a></p>
+        </div>
+      </footer>
     </div>
-  </footer>
+  </div>
 @endsection
+
+@push('styles')
+  <style>
+    .sidenav a {
+      border-bottom: 1px solid rgba(204, 204, 204, 0.2);
+      display: block;
+      padding: 10px 20px;
+      width: 100%;
+    }
+
+    .sidenav {
+      display: block;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      overflow-x: hidden;
+      padding-top: 0;
+      top: 0;
+      width: 250px;
+      z-index: 1;
+    }
+
+    .sidenav .close-btn {
+      position: absolute;
+      top: -5px;
+      right: 0;
+      font-size: 30px;
+      width: auto;
+      display: none;
+      border-bottom: none;
+    }
+
+    #main {
+      width: calc(100% - 250px);
+      margin-left: 250px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .sidenav {
+        display: none;
+        padding-top: 40px;
+      }
+
+      .sidenav .close-btn {
+        display: inline-block;
+      }
+
+      #main {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {
+        padding-top: 15px;
+      }
+
+      .sidenav a {
+        font-size: 18px;
+      }
+    }
+  </style>
+@endpush
+
+@push('scripts')
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.display = "block";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.display = "none";
+    }
+  </script>
+@endpush
