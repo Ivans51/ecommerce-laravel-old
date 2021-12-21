@@ -50,6 +50,12 @@ Route::middleware('validate:' . Constants::UNAUTHENTICATED)->group(function () {
   })->name('register');
 });
 
+Route::middleware('validate:' . Constants::UNAUTHENTICATED_ADMIN)->group(function () {
+  Route::get('admin/login', function () {
+    return view('layouts.admin-login');
+  })->name('login-admin');
+});
+
 /*
  * Auth Views
  */

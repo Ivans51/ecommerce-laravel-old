@@ -11,5 +11,6 @@ class Constants {
   const ADMIN = 'admin';
   const CUSTOMER = 'customer';
   const UNAUTHENTICATED = 'unauthenticated';
+  const UNAUTHENTICATED_ADMIN = 'unauthenticated_admin';
 
 }

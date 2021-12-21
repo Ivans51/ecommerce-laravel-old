@@ -2,18 +2,18 @@
 
 @section('main-app')
   <div>
-    <header id="mySidenav" class="bg-gray-900 sidenav text-white">
+    <header id="mySidenav" class="dark:bg-black sidenav dark:text-white">
       <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
       <ul class="flex flex-col">
         <li>
           <x-logo></x-logo>
         </li>
-        <li class="hover:bg-gray-800"><a href="/#">Profile</a></li>
-        <li class="hover:bg-gray-800"><a href="/#">Admins</a></li>
-        <li class="hover:bg-gray-800"><a href="/#">Products</a></li>
-        <li class="hover:bg-gray-800"><a href="/#">Categories</a></li>
-        <li class="hover:bg-gray-800"><a href="/#">Config</a></li>
-        <li class="hover:bg-gray-800">
+        <li class="dark:hover:bg-gray-800 hover:bg-gray-100"><a href="/#">Profile</a></li>
+        <li class="dark:hover:bg-gray-800 hover:bg-gray-100"><a href="/#">Admins</a></li>
+        <li class="dark:hover:bg-gray-800 hover:bg-gray-100"><a href="/#">Products</a></li>
+        <li class="dark:hover:bg-gray-800 hover:bg-gray-100"><a href="/#">Categories</a></li>
+        <li class="dark:hover:bg-gray-800 hover:bg-gray-100"><a href="/#">Config</a></li>
+        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
           <a>
             <div class="cursor-pointer items-center flex space-x-2">
               <label for="dark-theme" class="cursor-pointer">Dark theme</label>
@@ -25,12 +25,12 @@
             </div>
           </a>
         </li>
-        <li class="hover:bg-gray-800"><a href="/#">Logout</a></li>
+        <li class="dark:hover:bg-gray-800 hover:bg-gray-100"><a href="/#">Logout</a></li>
       </ul>
     </header>
 
     <div id="main">
-      <nav class="w-full bg-gray-900 text-white navbar space-x-4" style="min-height: 55px !important;">
+      <nav class="w-full dark:bg-black dark:text-white navbar space-x-4" style="min-height: 55px !important;">
         <div class="container mx-auto flex justify-end">
           Page Dashboard
           <button class="btn btn-square btn-ghost inline-block md:hidden" onclick="openNav()">
@@ -43,7 +43,9 @@
       </nav>
 
       <main style="height: 200px">
-        @yield('content-admin')
+        <div class="p-4">
+          @yield('content-admin')
+        </div>
 
         @error('message')
         <div class="border px-4 py-2 bg-red-500 text-white mt-2 w-6/12 mx-auto">
@@ -52,7 +54,7 @@
         @enderror
       </main>
 
-      <footer class="bg-gray-900 text-white">
+      <footer class="dark:bg-black dark:text-white border-t">
         <div class="container mx-auto flex justify-between px-4 py-4 text-sm">
           <p>©2021 IvansDev</p>
           <p><a class="hover:text-primary" href="{{route('terms')}}">Terms</a></p>
@@ -79,7 +81,7 @@
       overflow-x: hidden;
       padding-top: 0;
       top: 0;
-      width: 250px;
+      width: 200px;
       z-index: 1;
     }
 
@@ -94,8 +96,8 @@
     }
 
     #main {
-      width: calc(100% - 250px);
-      margin-left: 250px;
+      width: calc(100% - 200px);
+      margin-left: 200px;
     }
 
     @media screen and (max-width: 768px) {

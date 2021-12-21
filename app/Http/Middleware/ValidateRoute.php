@@ -19,7 +19,9 @@ class ValidateRoute {
   public function handle(Request $request, Closure $next, string $action) {
     switch ($action) {
       case Constants::UNAUTHENTICATED:
-        return Auth::check() ? redirect()->route('profile') : $next($request);
+        return Auth::check() ? redirect()->route('profile-customer') : $next($request);
+      case Constants::UNAUTHENTICATED_ADMIN:
+        return Auth::check() ? redirect()->route('home-admin') : $next($request);
       case Constants::CUSTOMER:
         return Auth::user()->role == Constants::ADMIN ? redirect()->route('home-admin') : $next($request);
       case Constants::ADMIN:
