@@ -6,7 +6,6 @@ use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,10 +15,10 @@ class ProductController extends BaseController {
    *
    * @return JsonResponse
    */
-  public function index(): JsonResponse {
+  public function index() {
     $products = Product::all();
 
-    return $this->sendResponse(Auth::user(), 'Products retrieved successfully.');
+    return view('admin.products', ['products' => $products]);
   }
 
   /**

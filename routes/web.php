@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\ProductController;
 use App\Utils\Constants;
 use App\Utils\Menu;
@@ -97,9 +100,20 @@ Route::middleware('auth:sanctum')->group(function () {
 
   Route::prefix('admin')->middleware('validate:' . Constants::ADMIN)->group(function () {
     Route::resource('products', ProductController::class);
+    Route::resource('categories', CategoriesController::class);
+    Route::resource('admins', AdminsController::class);
+    Route::resource('customers', CustomersController::class);
+
+    Route::get('profile', function () {
+      return view('admin.profile');
+    })->name('profile-admin');
+
+    Route::get('config', function () {
+      return view('admin.config');
+    })->name('config-admin');
 
     Route::get('home', function () {
-      return view('admin.home')->with(['menu' => Menu::getAdmin()]);
+      return view('admin.home');
     })->name('home-admin');
   });
 });

@@ -8,11 +8,24 @@
         <li>
           <x-logo></x-logo>
         </li>
-        <li class="dark:hover:bg-gray-800 hover:bg-gray-100"><a href="/#">Profile</a></li>
-        <li class="dark:hover:bg-gray-800 hover:bg-gray-100"><a href="/#">Admins</a></li>
-        <li class="dark:hover:bg-gray-800 hover:bg-gray-100"><a href="/#">Products</a></li>
-        <li class="dark:hover:bg-gray-800 hover:bg-gray-100"><a href="/#">Categories</a></li>
-        <li class="dark:hover:bg-gray-800 hover:bg-gray-100"><a href="/#">Config</a></li>
+        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
+          <a href="{{ route('profile-admin') }}">Profile</a>
+        </li>
+        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
+          <a href="{{ route('admins.index') }}">Admins</a>
+        </li>
+        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
+          <a href="{{ route('customers.index') }}">Customers</a>
+        </li>
+        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
+          <a href="{{ route('products.index') }}">Products</a>
+        </li>
+        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
+          <a href="{{ route('categories.index') }}">Categories</a>
+        </li>
+        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
+          <a href="{{ route('config-admin') }}">Config</a>
+        </li>
         <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
           <a>
             <div class="cursor-pointer items-center flex space-x-2">
