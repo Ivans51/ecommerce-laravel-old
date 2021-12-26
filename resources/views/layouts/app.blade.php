@@ -11,7 +11,7 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   @stack('styles')
 </head>
-<body class="font-poppins dark:bg-gray-800 dark:text-white h-screen">
+<body class="font-poppins dark:bg-gray-800 dark:text-white">
 
 @yield('main-app')
 

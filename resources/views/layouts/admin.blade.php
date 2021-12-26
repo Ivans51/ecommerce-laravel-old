@@ -44,8 +44,8 @@
       </ul>
     </header>
 
-    <div id="main" class="relative h-screen">
-      <nav class="w-full dark:bg-black dark:text-white navbar space-x-4" style="min-height: 55px !important;">
+    <div id="main" class="relative">
+      <nav class="w-full dark:bg-black dark:text-white space-x-4">
         <div class="container mx-auto flex justify-end">
           Page Dashboard
           <button class="btn btn-square btn-ghost inline-block md:hidden" onclick="openNav()">
@@ -57,7 +57,7 @@
         </div>
       </nav>
 
-      <main style="height: 200px">
+      <main style="min-height: calc(100vh - 55px)">
         <div class="p-4">
           @yield('content-admin')
         </div>
@@ -82,11 +82,13 @@
 
 @push('styles')
   <style>
-    .sidenav a {
+    nav {
+      align-items: center;
       border-bottom: 1px solid rgba(204, 204, 204, 0.2);
-      display: block;
+      display: flex;
+      justify-content: flex-end;
+      height: 55px;
       padding: 10px 20px;
-      width: 100%;
     }
 
     .sidenav {
@@ -99,6 +101,13 @@
       top: 0;
       width: 200px;
       z-index: 1;
+    }
+
+    .sidenav a {
+      border-bottom: 1px solid rgba(204, 204, 204, 0.2);
+      display: block;
+      padding: 10px 20px;
+      width: 100%;
     }
 
     .sidenav .close-btn {
