@@ -11,9 +11,15 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   @stack('styles')
 </head>
-<body class="font-poppins dark:bg-gray-800 dark:text-white">
+<body class="font-poppins dark:bg-gray-800 dark:text-white h-screen">
 
 @yield('main-app')
+
+@error('message')
+<div class="border px-4 py-2 bg-red-500 text-white mt-2 w-6/12 mx-auto">
+  {{ $errors->first('message') }}
+</div>
+@enderror
 
 <script src="{{ asset('js/app.js') }}"></script>
 

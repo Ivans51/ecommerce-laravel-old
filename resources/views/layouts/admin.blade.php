@@ -38,11 +38,13 @@
             </div>
           </a>
         </li>
-        <li class="dark:hover:bg-gray-800 hover:bg-gray-100"><a href="/#">Logout</a></li>
+        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
+          <a href="{{route('api-logout', \App\Utils\Constants::ADMIN)}}">Logout</a>
+        </li>
       </ul>
     </header>
 
-    <div id="main">
+    <div id="main" class="relative h-screen">
       <nav class="w-full dark:bg-black dark:text-white navbar space-x-4" style="min-height: 55px !important;">
         <div class="container mx-auto flex justify-end">
           Page Dashboard
@@ -67,7 +69,8 @@
         @enderror
       </main>
 
-      <footer class="dark:bg-black dark:text-white border-t">
+      <footer class="dark:bg-black dark:text-white absolute bottom-0 w-full">
+        <div class="divider-shop"></div>
         <div class="container mx-auto flex justify-between px-4 py-4 text-sm">
           <p>©2021 IvansDev</p>
           <p><a class="hover:text-primary" href="{{route('terms')}}">Terms</a></p>

@@ -43,6 +43,15 @@ a.ico-profile {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.modal {
+  --tw-bg-opacity: 0.7 !important;
+}
+
+.modal-box {
+  border-radius: initial !important;
+  min-height: 300px;
+}
+
 .input, input, select, textarea {
   @apply outline-none dark:text-black border border-opacity-50 border-secondary-light;
 }
