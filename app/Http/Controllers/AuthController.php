@@ -11,7 +11,8 @@ use Illuminate\Http\RedirectResponse;
 use Lunaweb\RecaptchaV3\Facades\RecaptchaV3;
 use Throwable;
 
-class AuthController extends BaseController {
+class AuthController extends BaseController
+{
 
   /**
    * Login api
@@ -19,7 +20,8 @@ class AuthController extends BaseController {
    * @param UserRequest $request
    * @return RedirectResponse
    */
-  public function login(UserRequest $request): RedirectResponse {
+  public function login(UserRequest $request): RedirectResponse
+  {
     try {
       if (Auth::attempt($request->only(['email', 'password']))) {
         $isLocal = config('app.env') == Constants::LOCAL;
@@ -40,7 +42,6 @@ class AuthController extends BaseController {
       } else {
         return $this->launchError('Data incorrect');
       }
-
     } catch (Throwable $ex) {
       return $this->launchThrowable($ex);
     }
@@ -52,7 +53,8 @@ class AuthController extends BaseController {
    * @param UserRequest $request
    * @return RedirectResponse
    */
-  public function loginAdmin(UserRequest $request): RedirectResponse {
+  public function loginAdmin(UserRequest $request): RedirectResponse
+  {
     try {
       if (Auth::attempt($request->only(['email', 'password']))) {
         $isLocal = config('app.env') == Constants::LOCAL;
@@ -73,7 +75,6 @@ class AuthController extends BaseController {
       } else {
         return $this->launchError('Data incorrect');
       }
-
     } catch (Throwable $ex) {
       return $this->launchThrowable($ex);
     }
@@ -85,7 +86,8 @@ class AuthController extends BaseController {
    * @param UserRequest $request
    * @return RedirectResponse
    */
-  public function register(UserRequest $request): RedirectResponse {
+  public function register(UserRequest $request): RedirectResponse
+  {
     try {
       $isLocal = config('app.env') == Constants::LOCAL;
       $score   = $isLocal ? 1 : RecaptchaV3::verify($request->get('g-recaptcha-response'), 'captcha');
@@ -112,7 +114,8 @@ class AuthController extends BaseController {
    * @param string $type
    * @return RedirectResponse
    */
-  public function logout(string $type): RedirectResponse {
+  public function logout(string $type): RedirectResponse
+  {
     try {
       Auth::user()->tokens()->where('tokenable_id', Auth::user()->id)->delete();
       Auth::logout();

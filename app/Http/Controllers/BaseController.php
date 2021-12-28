@@ -8,7 +8,8 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 
-class BaseController extends Controller {
+class BaseController extends Controller
+{
 
   /**
    * success response method.
@@ -17,7 +18,8 @@ class BaseController extends Controller {
    * @param $message
    * @return JsonResponse
    */
-  public function sendResponse($result, $message): JsonResponse {
+  public function sendResponse($result, $message): JsonResponse
+  {
     $response = [
       'success' => true,
       'data'    => $result,
@@ -35,7 +37,8 @@ class BaseController extends Controller {
    * @param int $code
    * @return JsonResponse
    */
-  public function sendError($error, int $code = 400): JsonResponse {
+  public function sendError($error, int $code = 400): JsonResponse
+  {
     return response()->json([
       'success' => false,
       'message' => $error,
@@ -50,7 +53,8 @@ class BaseController extends Controller {
    * @param array $errorMessages
    * @return JsonResponse
    */
-  public function sendErrorValidator($error, array $errorMessages = []): JsonResponse {
+  public function sendErrorValidator($error, array $errorMessages = []): JsonResponse
+  {
     $response = [
       'success' => false,
       'message' => $error,
@@ -68,7 +72,8 @@ class BaseController extends Controller {
    * @param string $message
    * @return RedirectResponse
    */
-  public function launchThrowable(\Throwable $error, string $message = 'something is wrong'): RedirectResponse {
+  public function launchThrowable(\Throwable $error, string $message = 'something is wrong'): RedirectResponse
+  {
     $isLocal = config('app.env') == Constants::LOCAL;
 
     if ($error instanceof QueryException) {
@@ -86,7 +91,8 @@ class BaseController extends Controller {
    * @param string $message
    * @return RedirectResponse
    */
-  public function launchError(string $message = 'something is wrong'): RedirectResponse {
+  public function launchError(string $message = 'something is wrong'): RedirectResponse
+  {
     $isLocal = config('app.env') == Constants::LOCAL;
 
     return back()->withErrors([

@@ -25,7 +25,7 @@ class UserSeeder extends Seeder {
           'role'              => 'customer'
         ],
         [
-          'id'                => '',
+          'id'                => '2be13f4d-b9b5-45e5-9b15-9a296f85a9c2',
           'name'              => 'admin',
           'email'             => 'admin@ecommerce.laravel.com',
           'address'           => 'street',

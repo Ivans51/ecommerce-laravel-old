@@ -2,7 +2,7 @@
 
 @section('main-app')
 
-  <div class="py-20">
+  <div class="py-20 h-screen">
     <img class="mx-auto mb-6" src="{{asset('img/images/logo.png')}}" alt="logo icon">
 
     <div class="mx-auto w-6/12 border-1 rounded shadow-lg bg-white px-6 py-8 dark:bg-gray-900">
@@ -71,5 +71,11 @@
         </div>
       </div>
     </div>
+
+    @error('message')
+    <div class="border px-4 py-2 bg-red-500 text-white mt-2 w-6/12 mx-auto">
+      {{ $errors->first('message') }}
+    </div>
+    @enderror
   </div>
 @endsection

@@ -1,11 +1,39 @@
 @extends('layouts.admin')
 
 @section('content-admin')
-  @foreach ($products as $item)
-    <p>Name: {{ $item->name }}</p>
-    <p>Description: {{ $item->description }}</p>
-    <hr>
-  @endforeach
+  <div class="flex justify-between py-2 px-4">
+    <h2 class="text-2xl">List Products</h3>
+      <button class="btn-custom">Create</button>
+  </div>
 
-  <p>Contents products</p>
+  <table class="table-fixed w-full mt-4">
+    <tr>
+      <th>ID</td>
+      <th>Name</td>
+      <th>Actions</td>
+    </tr>
+    @foreach ($products as $item)
+      <tr class="text-center">
+        <td>
+          <p>{{ $item->id }}</p>
+        </td>
+        <td>
+          <p>{{ $item->name }}</p>
+        </td>
+        <td class="text-center">
+          <div class="space-x-4">
+            <a title="show" href="{{ route('products.show', $item->id) }}">
+              <i class="fas fa-eye"></i>
+            </a>
+            <label for="my-modal-{{ $item->id }}" title="delete">
+              <i class="fas fa-trash-alt cursor-pointer"></i>
+            </label>
+            <x-delete-dialog :id="$item->id" :route="route('products.destroy', $item->id)"></x-delete-dialog>
+          </div>
+        </td>
+      </tr>
+    @endforeach
+  </table>
+
+  <x-pagination></x-pagination>
 @endsection

@@ -2,7 +2,7 @@
 
 @section('main-app')
   <div>
-    <header id="mySidenav" class="dark:bg-black sidenav dark:text-white">
+    <header id="mySidenav" class="bg-white dark:bg-black sidenav dark:text-white">
       <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
       <ul class="flex flex-col">
         <li>
@@ -46,9 +46,9 @@
 
     <div id="main" class="relative">
       <nav class="w-full dark:bg-black dark:text-white space-x-4">
-        <div class="container mx-auto flex justify-end">
+        <div class="container mx-auto flex justify-end items-center">
           Page Dashboard
-          <button class="btn btn-square btn-ghost inline-block md:hidden" onclick="openNav()">
+          <button class="btn btn-square btn-ghost inline-block md:hidden ml-3" onclick="openNav()">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                  class="inline-block w-6 h-6 stroke-current">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
