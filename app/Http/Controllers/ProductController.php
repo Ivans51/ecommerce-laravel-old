@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -14,13 +17,23 @@ class ProductController extends BaseController
   /**
    * Display a listing of the resource.
    *
-   * @return JsonResponse
+   * @return Application|Factory|View
    */
   public function index()
   {
     $products = Product::all();
 
-    return view('admin.products', ['products' => $products]);
+    return view('admin.products.products', ['products' => $products]);
+  }
+
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return Application|Factory|View
+   */
+  public function create()
+  {
+    return view('admin.products.create');
   }
 
   /**
@@ -41,12 +54,23 @@ class ProductController extends BaseController
   /**
    * Display the specified resource.
    *
-   * @param $id
+   * @param string $id
+   * @return Application|Factory|View
    */
-  public function show($id)
+  public function show(string $id)
+  {
+  }
+
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param string $id
+   * @return Application|Factory|View
+   */
+  public function edit(string $id)
   {
     $product = Product::query()->where('id', '=', $id)->first();
-    return view('admin.product', ['product' => $product]);
+    return view('admin.products.edit', ['product' => $product]);
   }
 
   /**
@@ -61,7 +85,7 @@ class ProductController extends BaseController
     $input = $request->all();
 
     $validator = Validator::make($input, [
-      'name'   => 'required',
+      'name' => 'required',
       'detail' => 'required'
     ]);
 
@@ -69,7 +93,7 @@ class ProductController extends BaseController
       return $this->sendErrorValidator('Validation Error.', $validator->errors()->all());
     }
 
-    $product->name   = $input['name'];
+    $product->name = $input['name'];
     $product->detail = $input['detail'];
     $product->save();
 

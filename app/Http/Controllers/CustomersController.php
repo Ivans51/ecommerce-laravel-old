@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class CustomersController extends Controller
@@ -10,28 +13,28 @@ class CustomersController extends Controller
   /**
    * Display a listing of the resource.
    *
-   * @return \Illuminate\Http\Response
+   * @return Application|Factory|View
    */
   public function index()
   {
     $users = User::query()->where('role', '=', 'customer')->get();
-    return view('admin.customers', ['customers' => $users]);
+    return view('admin.customers.customers', ['customers' => $users]);
   }
 
   /**
    * Show the form for creating a new resource.
    *
-   * @return \Illuminate\Http\Response
+   * @return Application|Factory|View
    */
   public function create()
   {
-    //
+    return view('admin.customers.create');
   }
 
   /**
    * Store a newly created resource in storage.
    *
-   * @param  \Illuminate\Http\Request  $request
+   * @param \Illuminate\Http\Request $request
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request)
@@ -42,31 +45,30 @@ class CustomersController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
+   * @param string $id
+   * @return Application|Factory|View
    */
-  public function show($id)
+  public function show(string $id)
   {
-    $user = User::query()->where('id', '=', $id)->first();
-    return view('admin.customer', ['user' => $user]);
   }
 
   /**
    * Show the form for editing the specified resource.
    *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
+   * @param string $id
+   * @return Application|Factory|View
    */
-  public function edit($id)
+  public function edit(string $id)
   {
-    //
+    $user = User::query()->where('id', '=', $id)->first();
+    return view('admin.customers.edit', ['user' => $user]);
   }
 
   /**
    * Update the specified resource in storage.
    *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  int  $id
+   * @param \Illuminate\Http\Request $request
+   * @param string $id
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id)
@@ -77,7 +79,7 @@ class CustomersController extends Controller
   /**
    * Remove the specified resource from storage.
    *
-   * @param  int  $id
+   * @param string $id
    * @return \Illuminate\Http\Response
    */
   public function destroy($id)

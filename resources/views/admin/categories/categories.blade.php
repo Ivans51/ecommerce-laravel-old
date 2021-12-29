@@ -2,15 +2,15 @@
 
 @section('content-admin')
   <div class="flex justify-between py-2 px-4">
-    <h2 class="text-2xl">List Categories</h3>
-      <button class="btn-custom">Create</button>
+    <h2 class="text-2xl">List Categories</h2>
+    <a href="{{ route('categories.create') }}" class="btn-custom">Create</a>
   </div>
 
   <table class="table-fixed w-full mt-4">
     <tr>
-      <th>ID</td>
-      <th>Name</td>
-      <th>Actions</td>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Actions</th>
     </tr>
     @foreach ($categories as $item)
       <tr class="text-center">
@@ -22,7 +22,7 @@
         </td>
         <td class="text-center">
           <div class="space-x-4">
-            <a title="show" href="{{ route('categories.show', $item->id) }}">
+            <a title="show" href="{{ route('categories.edit', $item->id) }}">
               <i class="fas fa-eye"></i>
             </a>
             <label for="my-modal-{{ $item->id }}" title="delete">
