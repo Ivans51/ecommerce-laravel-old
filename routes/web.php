@@ -22,14 +22,10 @@ use Illuminate\Support\Facades\Route;
 
 /* Views */
 Route::get('/', function () {
-  if (Auth::check()) {
-    if (Auth::user()->role == Constants::ADMIN) {
-      return view('admin.home')->with(['menu' => Menu::getAdmin()]);
-    } else if (Auth::user()->role == Constants::CUSTOMER) {
-      return view('customer.home')->with(['menu' => Menu::getCustomer()]);
-    } else {
-      return view('main.home')->with(['menu' => Menu::getHome()]);
-    }
+  if (Auth::check() && Auth::user()->role == Constants::ADMIN) {
+    return view('admin.home')->with(['menu' => Menu::getAdmin()]);
+  } else if (Auth::check() && Auth::user()->role == Constants::CUSTOMER) {
+    return view('customer.home')->with(['menu' => Menu::getCustomer()]);
   } else {
     return view('main.home')->with(['menu' => Menu::getHome()]);
   }
@@ -43,6 +39,7 @@ Route::get('/terms', function () {
   return view('main.terms')->with(['menu' => Menu::getHome()]);
 })->name('terms');
 
+/* Login and register */
 Route::middleware('validate:' . Constants::UNAUTHENTICATED)->group(function () {
   Route::get('login', function () {
     return view('main.login')->with(['menu' => Menu::getHome()]);
@@ -53,6 +50,7 @@ Route::middleware('validate:' . Constants::UNAUTHENTICATED)->group(function () {
   })->name('register');
 });
 
+/* Login and register admin */
 Route::middleware('validate:' . Constants::UNAUTHENTICATED_ADMIN)->group(function () {
   Route::get('admin/login', function () {
     return view('layouts.admin-login');
@@ -64,6 +62,7 @@ Route::middleware('validate:' . Constants::UNAUTHENTICATED_ADMIN)->group(functio
  */
 Route::middleware('auth:sanctum')->group(function () {
 
+  /* Customer */
   Route::prefix('customer')->middleware('validate:' . Constants::CUSTOMER)->group(function () {
     Route::get('profile', function () {
       return view('customer.profile')->with(['menu' => Menu::getCustomer()]);
@@ -98,6 +97,7 @@ Route::middleware('auth:sanctum')->group(function () {
     })->name('shop-cart-customer-success');
   });
 
+  /* Admin */
   Route::prefix('admin')->middleware('validate:' . Constants::ADMIN)->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('categories', CategoriesController::class);
@@ -119,7 +119,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 /*
- * Requests
+ * API Request
  */
 Route::post('login', [AuthController::class, 'login'])->name('api-login');
 Route::post('login/admin', [AuthController::class, 'loginAdmin'])->name('api-login-admin');

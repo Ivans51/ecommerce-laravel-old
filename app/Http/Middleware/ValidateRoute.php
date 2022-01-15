@@ -23,9 +23,9 @@ class ValidateRoute {
       case Constants::UNAUTHENTICATED_ADMIN:
         return Auth::check() ? redirect()->route('home-admin') : $next($request);
       case Constants::CUSTOMER:
-        return Auth::user()->role == Constants::ADMIN ? redirect()->route('home-admin') : $next($request);
+        return Auth::user()->role != Constants::CUSTOMER ? redirect()->route('home-admin') : $next($request);
       case Constants::ADMIN:
-        return Auth::user()->role == Constants::CUSTOMER ? redirect()->route('profile-customer') : $next($request);
+        return Auth::user()->role != Constants::ADMIN ? redirect()->route('profile-customer') : $next($request);
       default:
         return $next($request);
     }
