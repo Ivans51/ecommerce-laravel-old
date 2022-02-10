@@ -16,7 +16,7 @@
   @stack('styles')
 </head>
 
-<body class="font-poppins dark:bg-gray-800 dark:text-white">
+<body class="font-poppins dark:bg-gray-custom dark:text-white">
 
   @yield('main-app')
 

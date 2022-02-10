@@ -2,31 +2,28 @@
 
 @section('main-app')
   <div>
-    <header id="mySidenav" class="bg-white dark:bg-black sidenav dark:text-white">
+    <header id="mySidenav" class="bg-gray-custom-dark sidenav text-white px-4">
       <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
-      <ul class="flex flex-col">
+      <ul class="links flex flex-col">
         <li>
           <x-logo></x-logo>
         </li>
-        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
-          <a href="{{ route('profile-admin') }}">Profile</a>
-        </li>
-        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
+        <li class="hover:bg-gray-custom-light">
           <a href="{{ route('admins.index') }}">Admins</a>
         </li>
-        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
+        <li class="hover:bg-gray-custom-light">
           <a href="{{ route('customers.index') }}">Customers</a>
         </li>
-        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
+        <li class="hover:bg-gray-custom-light">
           <a href="{{ route('products.index') }}">Products</a>
         </li>
-        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
+        <li class="hover:bg-gray-custom-light">
           <a href="{{ route('categories.index') }}">Categories</a>
         </li>
-        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
+        <li class="hover:bg-gray-custom-light">
           <a href="{{ route('config-admin') }}">Config</a>
         </li>
-        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
+        <li class="hover:bg-gray-custom-light">
           <a>
             <div class="cursor-pointer items-center flex space-x-2">
               <label for="dark-theme" class="cursor-pointer">Dark theme</label>
@@ -38,14 +35,31 @@
             </div>
           </a>
         </li>
-        <li class="dark:hover:bg-gray-800 hover:bg-gray-100">
-          <a href="{{route('api-logout', \App\Utils\Constants::ADMIN)}}">Logout</a>
+      </ul>
+
+      <ul id="logout-content" class="mb-6 space-y-2">
+        <li>
+          <h5 class="text-gray-500">Profile</h5>
+          <a class="flex items-center space-x-2" href="{{ route('profile-admin') }}">
+            <img
+              class="w-14 h-14"
+              style="border-radius: 50%"
+              src="{{asset('img/images/img.png')}}"
+              alt="image profile"
+            >
+            <div>
+              <h5>Admin</h5>
+            </div>
+          </a>
+        </li>
+        <li class="rounded-2xl bg-gray-custom-light px-4 py-2">
+          <a class="" href="{{route('api-logout', \App\Utils\Constants::ADMIN)}}">Logout</a>
         </li>
       </ul>
     </header>
 
     <div id="main" class="relative">
-      <nav class="w-full dark:bg-black dark:text-white space-x-4">
+      <nav class="w-full dark:bg-gray-custom-dark dark:text-white space-x-4">
         <div class="container mx-auto flex justify-end items-center">
           Page Dashboard
           <button class="btn btn-square btn-ghost inline-block md:hidden ml-3" onclick="openNav()">
@@ -69,8 +83,7 @@
         @enderror
       </main>
 
-      <footer class="dark:bg-black dark:text-white absolute bottom-0 w-full">
-        <div class="divider-shop"></div>
+      <footer class="dark:bg-gray-custom-dark dark:text-white absolute bottom-0 w-full">
         <div class="container mx-auto flex justify-between px-4 py-4 text-sm">
           <p>©2021 IvansDev</p>
           <p><a class="hover:text-primary" href="{{route('terms')}}">Terms</a></p>
@@ -92,8 +105,10 @@
     }
 
     .sidenav {
-      display: block;
+      display: flex;
+      flex-direction: column;
       height: 100vh;
+      justify-content: space-between;
       position: fixed;
       left: 0;
       overflow-x: hidden;
@@ -103,8 +118,12 @@
       z-index: 1;
     }
 
-    .sidenav a {
-      border-bottom: 1px solid rgba(204, 204, 204, 0.2);
+    .sidenav .links li {
+      border-radius: 5px;
+    }
+
+    .sidenav .links a {
+      border-bottom: 1px solid #272730;
       display: block;
       padding: 10px 20px;
       width: 100%;
@@ -123,6 +142,10 @@
     #main {
       width: calc(100% - 200px);
       margin-left: 200px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(204, 204, 204, 0.2);
     }
 
     @media screen and (max-width: 768px) {
@@ -156,7 +179,7 @@
 @push('scripts')
   <script>
     function openNav() {
-      document.getElementById("mySidenav").style.display = "block";
+      document.getElementById("mySidenav").style.display = "flex";
     }
 
     function closeNav() {

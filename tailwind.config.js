@@ -30,6 +30,11 @@ module.exports = {
           "DEFAULT": "#9E9E9E",
           "dark": "#616161",
         },
+        "gray-custom":  {
+          "light": "#272730",
+          "DEFAULT": "#1e1d26",
+          "dark": "#1b1a22",
+        },
       },
       gridTemplateRows: {
         'home-custom': 'auto 1fr auto',
