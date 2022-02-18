@@ -1,8 +1,8 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "Ecommerce with The Laravel Framework.",
+    "keywords": ["framework", "laravel", "ecommerce"],
     "license": "MIT",
     "require": {
         "php": "^7.4",
