@@ -11,9 +11,9 @@ use YourAppRocks\EloquentUuid\Traits\HasUuid;
 class User extends Authenticatable {
   use HasApiTokens, HasFactory, Notifiable, HasUuid;
 
-  public    $incrementing   = false;
+  public $incrementing = false;
   protected $uuidColumnName = 'id';
-  protected $table          = 'users';
+  protected $table = 'users';
 
   /**
    * The attributes that are mass assignable.
@@ -25,6 +25,8 @@ class User extends Authenticatable {
       'name',
       'email',
       'password',
+      'twitter_id',
+      'oauth_type',
     ];
 
   /**
@@ -36,6 +38,8 @@ class User extends Authenticatable {
     = [
       'password',
       'remember_token',
+      'two_factor_recovery_codes',
+      'two_factor_secret',
     ];
 
   /**
@@ -47,4 +51,13 @@ class User extends Authenticatable {
     = [
       'email_verified_at' => 'datetime',
     ];
+
+  /**
+   * The accessors to append to the model's array form.
+   *
+   * @var array
+   */
+  protected $appends = [
+    'profile_photo_url',
+  ];
 }

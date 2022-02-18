@@ -76,8 +76,10 @@ input:focus, input:active, select:focus, select:active {
   height: calc(100vh - 116px);
 }
 
-.btn-custom {
-  @apply py-1 px-2 rounded text-white transition bg-primary hover:bg-primary-light cursor-pointer;
+@layer components {
+  .btn-custom {
+    @apply py-1 px-2 rounded text-white transition bg-primary hover:bg-primary-light cursor-pointer;
+  }
 }
 
 .btn-custom-danger {

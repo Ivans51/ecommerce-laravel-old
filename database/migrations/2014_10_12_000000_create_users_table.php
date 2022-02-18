@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration {
       $table->string('address');
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
+      $table->string('twitter_id')->nullable();
+      $table->string('oauth_type')->nullable();
       $table->enum('role', [Constants::ADMIN, Constants::CUSTOMER]);
       $table->rememberToken();
       $table->timestamps();

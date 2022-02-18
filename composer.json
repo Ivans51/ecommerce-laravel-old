@@ -5,7 +5,7 @@
     "keywords": ["framework", "laravel", "ecommerce"],
     "license": "MIT",
     "require": {
-        "php": "^7.4",
+        "php": "^7.3|^8.0",
         "ext-json": "*",
         "barryvdh/laravel-ide-helper": "^2.10",
         "fideloper/proxy": "^4.4",
@@ -14,6 +14,7 @@
         "josiasmontag/laravel-recaptchav3": "^0.6.0",
         "laravel/framework": "^8.40",
         "laravel/sanctum": "^2.11",
+        "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.5",
         "laraveles/spanish": "^1.5",
         "your-app-rocks/eloquent-uuid": "^2.5"

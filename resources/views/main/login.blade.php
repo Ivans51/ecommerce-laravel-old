@@ -32,9 +32,34 @@
           Forgot your password?
         </label>
 
-        <button class="btn-custom w-full mt-4 mb-8">
+        <button class="btn-custom w-full mt-4">
           Sign in
         </button>
+
+        {{-- Laravel Login with Twitter --}}
+        <div class="flex items-center justify-end mt-12">
+          <a class="btn-custom w-full text-center btn-twitter" href="{{ url('auth/twitter') }}">
+            Login with Twitter
+          </a>
+        </div>
+
+        {{-- Laravel Login with Facebook --}}
+        <div class="flex items-center justify-end mt-2">
+          <a class="btn-custom w-full text-center btn-facebook" href="{{ url('auth/facebook') }}">
+            Login with Facebook
+          </a>
+        </div>
+
+        {{-- Laravel Login with Google --}}
+        <div class="flex items-center justify-end mt-2 mb-8">
+          <a
+            class="btn-custom w-full text-center btn-google text-black"
+            style="background: white;"
+            href="{{ url('auth/google') }}"
+          >
+            Login with Google
+          </a>
+        </div>
 
         <a class="text-center block text-sm hover:text-primary" href="{{route('register')}}">
           Don’t have an Account? Create account
@@ -74,3 +99,24 @@
     </div>
   </div>
 @endsection
+
+@push('styles')
+  <style>
+    .btn-twitter {
+      background: #1E9DEA;
+    }
+
+    .btn-twitter:hover {
+      background: #30a3ee;
+    }
+
+    .btn-facebook {
+      background: #1e4eea;
+    }
+
+    .btn-facebook:hover {
+      background: #3461ee;
+    }
+
+  </style>
+@endpush

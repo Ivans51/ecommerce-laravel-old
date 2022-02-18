@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthSocialController;
 use App\Utils\Constants;
 use App\Utils\Menu;
 use Illuminate\Support\Facades\Route;
@@ -121,6 +122,10 @@ Route::middleware('auth:sanctum')->group(function () {
 /*
  * API Request
  */
+Route::get('auth/facebook', [AuthSocialController::class, 'loginWithTwitter']);
+Route::get('auth/google', [AuthSocialController::class, 'loginWithTwitter']);
+Route::get('auth/twitter', [AuthSocialController::class, 'loginWithTwitter']);
+Route::get('auth/callback/twitter', [AuthSocialController::class, 'cbTwitter']);
 Route::post('login', [AuthController::class, 'login'])->name('api-login');
 Route::post('login/admin', [AuthController::class, 'loginAdmin'])->name('api-login-admin');
 Route::post('register', [AuthController::class, 'register'])->name('api-register');
